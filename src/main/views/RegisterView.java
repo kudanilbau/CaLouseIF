@@ -23,7 +23,7 @@ public class RegisterView {
 	private TextField usernameTextField, phoneNumberTextField, addressTextField;
 	private PasswordField passwordPasswordField;
 	private Button registerButton;
-	private Hyperlink createAccountHyperLink;
+	private Hyperlink loginHyperLink;
 	private Line line1, line2;
 
 	private RegisterController controller;
@@ -40,12 +40,14 @@ public class RegisterView {
 		registerButton.setOnMouseClicked(e -> {
 			controller.handleRegister(usernameTextField.getText(), passwordPasswordField.getText(), phoneNumberTextField.getText(), addressTextField.getText());
 		});
+		loginHyperLink.setOnAction(e -> {
+			controller.handleLoginHyperLink(e);
+		});
 	}
 
 	private void styleComponent() {
 		mainHBox.setPrefWidth(1280);
 		mainHBox.setPrefHeight(720);
-		System.out.println(mainHBox.getMaxHeight());
 		imageVBox.setStyle("" + "-fx-background-image: url('"
 				+ getClass().getResource("/resources/images/login-image.jpg").toExternalForm() + "');"
 				+ "-fx-background-size: cover;" + "-fx-background-position: center center;"
@@ -110,11 +112,11 @@ public class RegisterView {
 		loginAccountHBox.setAlignment(Pos.CENTER);
 		loginAccountHBox.setPadding(new Insets(10));
 		createAccountLabel.setFont(Font.font(16));
-		createAccountHyperLink.setFont(Font.font(16));
+		loginHyperLink.setFont(Font.font(16));
 	}
 
 	private void addComponent() {
-		loginAccountHBox.getChildren().addAll(createAccountLabel, createAccountHyperLink);
+		loginAccountHBox.getChildren().addAll(createAccountLabel, loginHyperLink);
 		dividerHBox.getChildren().addAll(line1, orLabel, line2);
 		formVBox.getChildren().addAll(usernameLabel, usernameTextField, passwordLabel, passwordPasswordField, phoneNumberLabel, phoneNumberTextField, addressLabel, addressTextField);
 		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, registerButton, dividerHBox, loginAccountHBox);
@@ -151,7 +153,7 @@ public class RegisterView {
 
 		registerButton = new Button("Register");
 
-		createAccountHyperLink = new Hyperlink("Login");
+		loginHyperLink = new Hyperlink("Login");
 
 		line1 = new Line();
 		line2 = new Line();

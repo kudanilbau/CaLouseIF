@@ -40,12 +40,14 @@ public class LoginView {
 		loginButton.setOnMouseClicked(e -> {
 			controller.handleLogin(usernameTextField.getText(), passwordPasswordField.getText());
 		});
+		createAccountHyperLink.setOnAction(e -> {
+			controller.handleCreateAccountHyperLink(e);
+		});
 	}
 
 	private void styleComponent() {
 		mainHBox.setPrefWidth(1280);
 		mainHBox.setPrefHeight(720);
-		System.out.println(mainHBox.getMaxHeight());
 		imageVBox.setStyle("" + "-fx-background-image: url('"
 				+ getClass().getResource("/resources/images/login-image.jpg").toExternalForm() + "');"
 				+ "-fx-background-size: cover;" + "-fx-background-position: center center;"
