@@ -2,6 +2,7 @@ package main.views;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -40,6 +41,13 @@ public class RegisterView {
 		registerButton.setOnMouseClicked(e -> {
 			controller.handleRegister(usernameTextField.getText(), passwordPasswordField.getText(), phoneNumberTextField.getText(), addressTextField.getText());
 		});
+		registerButton.setOnMouseEntered(e -> {
+			registerButton.setCursor(Cursor.HAND);
+		});
+		registerButton.setOnMouseExited(e -> {
+			registerButton.setCursor(Cursor.DEFAULT);
+		});
+		
 		loginHyperLink.setOnAction(e -> {
 			controller.handleLoginHyperLink(e);
 		});
