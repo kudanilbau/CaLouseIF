@@ -4,8 +4,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import main.controllers.LoginController;
 import main.views.LoginView;
+import main.views.RegisterView;
 
 public class Main extends Application {
 
@@ -16,9 +16,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		LoginView loginView = new LoginView();
+		RegisterView registerView = new RegisterView();
 		primaryStage.setTitle("CaLouseIF");
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/logo.png")));
-		primaryStage.setScene(new Scene(loginView.asParent()));
+//		primaryStage.setScene(new Scene(loginView.asParent()));
+		primaryStage.setScene(new Scene(registerView.asParent()));
 		primaryStage.show();
 	}
 
