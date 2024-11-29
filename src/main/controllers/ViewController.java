@@ -15,6 +15,7 @@ public class ViewController {
 	private Stack<Node> viewStack;
 
 	private ViewController(Stage stage) {
+		this.stage = stage;
 		appView = new AppView(stage);
 		viewStack = new Stack<>();
 	}
