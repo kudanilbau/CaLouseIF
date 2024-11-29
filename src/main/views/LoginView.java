@@ -3,12 +3,13 @@ package main.views;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -39,7 +40,9 @@ public class LoginView {
 
 	private void initActionComponent() {
 		loginButton.setOnMouseClicked(e -> {
-			controller.handleLogin(usernameTextField.getText(), passwordPasswordField.getText());
+			if (e.getButton() == MouseButton.PRIMARY) {
+				controller.handleLogin(usernameTextField.getText(), passwordPasswordField.getText());
+			}
 		});
 		loginButton.setOnMouseEntered(e -> {
 			loginButton.setCursor(Cursor.HAND);
@@ -47,7 +50,7 @@ public class LoginView {
 		loginButton.setOnMouseExited(e -> {
 			loginButton.setCursor(Cursor.DEFAULT);
 		});
-		
+
 		createAccountHyperLink.setOnAction(e -> {
 			controller.handleCreateAccountHyperLink(e);
 		});
@@ -62,7 +65,6 @@ public class LoginView {
 				+ "-fx-background-repeat: no-repeat;");
 		imageVBox.setPrefWidth(853.33);
 		HBox.setHgrow(imageVBox, Priority.ALWAYS);
-		
 
 		HBox.setHgrow(contentVBox, Priority.ALWAYS);
 		contentVBox.setPadding(new Insets(20, 40, 20, 40));
@@ -72,7 +74,7 @@ public class LoginView {
 		VBox.setMargin(titleLabel, new Insets(0, 0, 20, 0));
 		subTitleLabel.setFont(Font.font(24));
 		VBox.setMargin(subTitleLabel, new Insets(0, 0, 20, 0));
-		
+
 		formVBox.setAlignment(Pos.CENTER_LEFT);
 		VBox.setVgrow(formVBox, Priority.ALWAYS);
 
@@ -93,18 +95,18 @@ public class LoginView {
 		loginButton.setPadding(new Insets(15, 0, 15, 0));
 		loginButton.setMaxWidth(Double.MAX_VALUE);
 		VBox.setVgrow(loginButton, Priority.ALWAYS);
-		
+
 		dividerHBox.setPadding(new Insets(10));
 		dividerHBox.setAlignment(Pos.CENTER);
 		line1.setEndX(170);
 		line2.setEndX(170);
-		
+
 		orLabel.setFont(Font.font(16));
 		orLabel.setPadding(new Insets(0, 5, 0, 5));
 		orLabel.setMinWidth(Region.USE_PREF_SIZE);
 		orLabel.setMinHeight(Region.USE_PREF_SIZE);
 		HBox.setMargin(orLabel, new Insets(0, 5, 0, 5));
-		
+
 		createAccountHBox.setAlignment(Pos.CENTER);
 		createAccountHBox.setPadding(new Insets(10));
 		createAccountLabel.setFont(Font.font(16));
@@ -115,11 +117,12 @@ public class LoginView {
 		createAccountHBox.getChildren().addAll(createAccountLabel, createAccountHyperLink);
 		dividerHBox.getChildren().addAll(line1, orLabel, line2);
 		formVBox.getChildren().addAll(usernameLabel, usernameTextField, passwordLabel, passwordPasswordField);
-		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, loginButton, dividerHBox, createAccountHBox);
+		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, loginButton, dividerHBox,
+				createAccountHBox);
 		mainHBox.getChildren().addAll(imageVBox, contentVBox);
 	}
 
-	public Parent asParent() {
+	public Node asNode() {
 		return mainHBox;
 	}
 

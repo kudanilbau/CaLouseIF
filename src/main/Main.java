@@ -1,14 +1,10 @@
 package main;
 
-import java.sql.ResultSet;
-
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import main.utils.DatabaseConnector;
+import main.controllers.ViewController;
 import main.views.LoginView;
-import main.views.RegisterView;
 
 public class Main extends Application {
 
@@ -18,12 +14,15 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		LoginView loginView = new LoginView();
-		RegisterView registerView = new RegisterView();
+		// set title and icon
 		primaryStage.setTitle("CaLouseIF");
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/logo.png")));
-		primaryStage.setScene(new Scene(loginView.asParent()));
-		primaryStage.show();
-	}
 
+		// initialize stage in view controller
+		ViewController viewController = ViewController.getInstance(primaryStage);
+
+		// launch login at start
+		LoginView loginView = new LoginView();
+		viewController.navigateTo(loginView.asNode());
+	}
 }

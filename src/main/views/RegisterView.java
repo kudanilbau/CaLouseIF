@@ -3,12 +3,13 @@ package main.views;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -20,7 +21,8 @@ import main.controllers.RegisterController;
 public class RegisterView {
 	private VBox imageVBox, contentVBox, formVBox;
 	private HBox mainHBox, dividerHBox, loginAccountHBox;
-	private Label titleLabel, subTitleLabel, usernameLabel, passwordLabel, phoneNumberLabel, addressLabel, orLabel, createAccountLabel;
+	private Label titleLabel, subTitleLabel, usernameLabel, passwordLabel, phoneNumberLabel, addressLabel, orLabel,
+			createAccountLabel;
 	private TextField usernameTextField, phoneNumberTextField, addressTextField;
 	private PasswordField passwordPasswordField;
 	private Button registerButton;
@@ -39,7 +41,10 @@ public class RegisterView {
 
 	private void initActionComponent() {
 		registerButton.setOnMouseClicked(e -> {
-			controller.handleRegister(usernameTextField.getText(), passwordPasswordField.getText(), phoneNumberTextField.getText(), addressTextField.getText());
+			if (e.getButton() == MouseButton.PRIMARY) {
+				controller.handleRegister(usernameTextField.getText(), passwordPasswordField.getText(),
+						phoneNumberTextField.getText(), addressTextField.getText());
+			}
 		});
 		registerButton.setOnMouseEntered(e -> {
 			registerButton.setCursor(Cursor.HAND);
@@ -47,7 +52,7 @@ public class RegisterView {
 		registerButton.setOnMouseExited(e -> {
 			registerButton.setCursor(Cursor.DEFAULT);
 		});
-		
+
 		loginHyperLink.setOnAction(e -> {
 			controller.handleLoginHyperLink(e);
 		});
@@ -62,7 +67,6 @@ public class RegisterView {
 				+ "-fx-background-repeat: no-repeat;");
 		imageVBox.setPrefWidth(853.33);
 		HBox.setHgrow(imageVBox, Priority.ALWAYS);
-		
 
 		HBox.setHgrow(contentVBox, Priority.ALWAYS);
 		contentVBox.setPadding(new Insets(20, 40, 20, 40));
@@ -72,7 +76,7 @@ public class RegisterView {
 		VBox.setMargin(titleLabel, new Insets(0, 0, 20, 0));
 		subTitleLabel.setFont(Font.font(24));
 		VBox.setMargin(subTitleLabel, new Insets(0, 0, 20, 0));
-		
+
 		formVBox.setAlignment(Pos.CENTER_LEFT);
 		VBox.setVgrow(formVBox, Priority.ALWAYS);
 
@@ -105,18 +109,18 @@ public class RegisterView {
 		registerButton.setPadding(new Insets(15, 0, 15, 0));
 		registerButton.setMaxWidth(Double.MAX_VALUE);
 		VBox.setVgrow(registerButton, Priority.ALWAYS);
-		
+
 		dividerHBox.setPadding(new Insets(10));
 		dividerHBox.setAlignment(Pos.CENTER);
 		line1.setEndX(170);
 		line2.setEndX(170);
-		
+
 		orLabel.setFont(Font.font(16));
 		orLabel.setPadding(new Insets(0, 5, 0, 5));
 		orLabel.setMinWidth(Region.USE_PREF_SIZE);
 		orLabel.setMinHeight(Region.USE_PREF_SIZE);
 		HBox.setMargin(orLabel, new Insets(0, 5, 0, 5));
-		
+
 		loginAccountHBox.setAlignment(Pos.CENTER);
 		loginAccountHBox.setPadding(new Insets(10));
 		createAccountLabel.setFont(Font.font(16));
@@ -126,12 +130,14 @@ public class RegisterView {
 	private void addComponent() {
 		loginAccountHBox.getChildren().addAll(createAccountLabel, loginHyperLink);
 		dividerHBox.getChildren().addAll(line1, orLabel, line2);
-		formVBox.getChildren().addAll(usernameLabel, usernameTextField, passwordLabel, passwordPasswordField, phoneNumberLabel, phoneNumberTextField, addressLabel, addressTextField);
-		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, registerButton, dividerHBox, loginAccountHBox);
+		formVBox.getChildren().addAll(usernameLabel, usernameTextField, passwordLabel, passwordPasswordField,
+				phoneNumberLabel, phoneNumberTextField, addressLabel, addressTextField);
+		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, registerButton, dividerHBox,
+				loginAccountHBox);
 		mainHBox.getChildren().addAll(imageVBox, contentVBox);
 	}
 
-	public Parent asParent() {
+	public Node asNode() {
 		return mainHBox;
 	}
 
