@@ -9,7 +9,7 @@ module CalouseIF {
 	opens view;
 	opens controller;
 	opens model;
-	opens util;
+	opens repository;
 	requires javafx.graphics;
 	requires javafx.controls;
 	requires java.sql;
