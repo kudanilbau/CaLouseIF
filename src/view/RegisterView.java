@@ -31,8 +31,8 @@ public class RegisterView {
 
 	private RegisterController controller;
 
-	public RegisterView() {
-		this.controller = RegisterController.getInstance();
+	public RegisterView(RegisterController controller) {
+		this.controller = controller;
 		initComponent();
 		addComponent();
 		styleComponent();

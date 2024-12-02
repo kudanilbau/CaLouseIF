@@ -30,8 +30,8 @@ public class LoginView {
 
 	private LoginController controller;
 
-	public LoginView() {
-		this.controller = LoginController.getInstance();
+	public LoginView(LoginController controller) {
+		this.controller = controller;
 		initComponent();
 		addComponent();
 		styleComponent();

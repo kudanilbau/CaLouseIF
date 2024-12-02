@@ -3,8 +3,8 @@ package main;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import router.PageData;
 import router.Router;
-import view.LoginView;
 
 public class Main extends Application {
 
@@ -23,8 +23,6 @@ public class Main extends Application {
 				
 
 		// launch login at start
-		Router viewController = Router.getInstance(); 
-		LoginView loginView = new LoginView();
-		viewController.navigateTo(loginView.asNode());
+		Router.getInstance().navigateTo(PageData.LoginPage());
 	}
 }

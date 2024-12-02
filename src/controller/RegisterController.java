@@ -5,19 +5,10 @@ import router.PageData;
 import router.Router;
 
 public class RegisterController {
+	private Router router;
 
-	private static RegisterController controller;
-	private Router viewController;
-
-	private RegisterController() {
-		viewController = Router.getInstance();
-	}
-
-	public static RegisterController getInstance() {
-		if (controller == null) {
-			controller = new RegisterController();
-		}
-		return controller;
+	public RegisterController() {
+		router = Router.getInstance();
 	}
 
 	public void handleRegister(String username, String password, String phoneNumber, String address) {
@@ -25,6 +16,6 @@ public class RegisterController {
 	}
 
 	public void handleLoginHyperLink(ActionEvent e) {
-		viewController.navigateTo(PageData.LoginPage());
+		router.navigateTo(PageData.LoginPage());
 	}
 }
