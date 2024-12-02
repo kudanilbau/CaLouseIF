@@ -1,15 +1,16 @@
-package main.controllers;
+package controller;
 
 import javafx.event.ActionEvent;
-import main.views.LoginView;
+import router.Router;
+import view.LoginView;
 
 public class RegisterController {
 
 	private static RegisterController controller;
-	private ViewController viewController;
+	private Router viewController;
 
 	private RegisterController() {
-		viewController = ViewController.getInstance();
+		viewController = Router.getInstance();
 	}
 
 	public static RegisterController getInstance() {

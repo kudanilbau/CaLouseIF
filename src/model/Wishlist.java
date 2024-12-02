@@ -1,4 +1,4 @@
-package main.models;
+package model;
 
 public class Wishlist {
 	private String Whislist_id;

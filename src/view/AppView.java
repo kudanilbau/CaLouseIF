@@ -1,10 +1,10 @@
-package main.views;
+package view;
 
 import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import main.controllers.ViewController;
+import router.Router;
 
 public class AppView {
 	private BorderPane container;
@@ -25,7 +25,7 @@ public class AppView {
 	private void setSceneAction() {
 		scene.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.BACK) {
-				ViewController.getInstance().back();
+				Router.getInstance().back();
 			}
 		});
 	}

@@ -1,5 +1,6 @@
-package main.views;
+package view;
 
+import controller.RegisterController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -16,7 +17,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
-import main.controllers.RegisterController;
 
 public class RegisterView {
 	private VBox imageVBox, contentVBox, formVBox;

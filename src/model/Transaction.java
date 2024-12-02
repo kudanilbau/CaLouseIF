@@ -1,4 +1,4 @@
-package main.models;
+package model;
 
 public class Transaction {
 	private String User_id;

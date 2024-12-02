@@ -1,45 +1,41 @@
-package main.controllers;
+package router;
 
 import java.lang.reflect.Parameter;
 import java.util.Stack;
 
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import main.views.AppView;
+import view.AppView;
 
-public class ViewController {
-	private static ViewController instance = null;
+public class Router {
+	private static Router instance = null;
 
 	private Stage stage;
 	private AppView appView;
 	private Stack<Node> viewStack;
 
-	private ViewController(Stage stage) {
+	private Router(Stage stage) {
 		this.stage = stage;
 		appView = new AppView(stage);
 		viewStack = new Stack<>();
 	}
 
 	/**
-	 * Create {@link ViewController} instance
+	 * Create {@link Router} instance
 	 * 
 	 * @param stage
-	 * @return ViewController singleton instance
 	 */
-	public static ViewController getInstance(Stage stage) {
-		if (instance == null) {
-			instance = new ViewController(stage);
-		}
-		return instance;
+	public static void initInstance(Stage stage) {
+		instance = new Router(stage);
 	}
 
 	/**
-	 * Get {@link ViewController} instance
+	 * Get {@link Router} instance
 	 * 
 	 * @return ViewController singleton instance
 	 */
 
-	public static ViewController getInstance() {
+	public static Router getInstance() {
 		if (instance == null) {
 			System.err.println("Stage is not initialized");
 		}

@@ -1,4 +1,4 @@
-package main.models;
+package model;
 
 public class Item {
 	private String Item_id;
