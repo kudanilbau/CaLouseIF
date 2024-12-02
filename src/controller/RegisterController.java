@@ -1,8 +1,8 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import router.PageData;
 import router.Router;
-import view.LoginView;
 
 public class RegisterController {
 
@@ -25,7 +25,6 @@ public class RegisterController {
 	}
 
 	public void handleLoginHyperLink(ActionEvent e) {
-		LoginView loginView = new LoginView();
-		viewController.navigateTo(loginView.asNode());
+		viewController.navigateTo(PageData.LoginPage());
 	}
 }

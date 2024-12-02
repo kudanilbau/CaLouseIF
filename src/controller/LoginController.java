@@ -1,16 +1,16 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import router.PageData;
 import router.Router;
-import view.RegisterView;
 
 public class LoginController {
 
 	private static LoginController controller;
-	private Router viewController;
+	private Router router;
 
 	private LoginController() {
-		viewController = Router.getInstance();
+		router = Router.getInstance();
 	}
 
 	public static LoginController getInstance() {
@@ -25,7 +25,6 @@ public class LoginController {
 	}
 
 	public void handleCreateAccountHyperLink(ActionEvent e) {
-		RegisterView registerView = new RegisterView();
-		viewController.navigateTo(registerView.asNode());
+		router.navigateTo(PageData.RegisterPage());
 	}
 }
