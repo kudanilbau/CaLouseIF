@@ -43,7 +43,6 @@ public class UserRepository {
 		String query = "SELECT * FROM user WHERE username = ? AND password = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(query)) {
 			String encryptedPassword = PasswordEncrypt.encrypt(password);
-			System.out.println(encryptedPassword);
 			pstmt.setString(1, username);
 //			pstmt.setString(2, password);
 			pstmt.setString(2, encryptedPassword);
