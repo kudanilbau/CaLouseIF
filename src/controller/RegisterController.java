@@ -16,6 +16,6 @@ public class RegisterController {
 	}
 
 	public void handleLoginHyperLink(ActionEvent e) {
-		router.navigateTo(PageData.LoginPage());
+		router.navigateTo(PageData.loginPage());
 	}
 }

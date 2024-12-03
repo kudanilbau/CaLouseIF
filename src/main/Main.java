@@ -23,6 +23,7 @@ public class Main extends Application {
 				
 
 		// launch login at start
-		Router.getInstance().navigateTo(PageData.LoginPage());
+//		Router.getInstance().navigateTo(PageData.LoginPage());
+		Router.getInstance().navigateTo(PageData.sellerUploadPage());
 	}
 }

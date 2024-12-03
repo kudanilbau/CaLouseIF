@@ -16,6 +16,6 @@ public class LoginController {
 	}
 
 	public void handleCreateAccountHyperLink(ActionEvent e) {
-		router.navigateTo(PageData.RegisterPage());
+		router.navigateTo(PageData.registerPage());
 	}
 }
