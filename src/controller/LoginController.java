@@ -15,12 +15,11 @@ public class LoginController {
 		this.userRepository = userRepository;
 	}
 
-	public boolean handleLogin(String username, String password) {
+	public void handleLogin(String username, String password) throws Exception {
 		User user = userRepository.getUserByUsernameAndPassword(username, password);
 		if(user == null) {
-			return false;		
+			throw new Exception("Incorrect username or password");
 		}
-		return true;
 	}
 
 	public void handleCreateAccountHyperLink(ActionEvent e) {

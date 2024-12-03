@@ -15,13 +15,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 
 public class LoginView {
 	private VBox imageVBox, contentVBox, formVBox;
 	private HBox mainHBox, dividerHBox, createAccountHBox;
-	private Label titleLabel, subTitleLabel, usernameLabel, passwordLabel, orLabel, createAccountLabel;
+	private Label titleLabel, subTitleLabel, usernameLabel, passwordLabel, orLabel, createAccountLabel, errorMessage;
 	private TextField usernameTextField;
 	private PasswordField passwordPasswordField;
 	private Button loginButton;
@@ -41,7 +42,14 @@ public class LoginView {
 	private void initActionComponent() {
 		loginButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				controller.handleLogin(usernameTextField.getText(), passwordPasswordField.getText());
+				try {
+					controller.handleLogin(usernameTextField.getText(), passwordPasswordField.getText());
+					errorMessage.setVisible(false);
+					errorMessage.setText("");
+				} catch (Exception ex) {
+					errorMessage.setVisible(true);
+					errorMessage.setText(ex.getMessage());
+				}
 			}
 		});
 		loginButton.setOnMouseEntered(e -> {
@@ -90,6 +98,11 @@ public class LoginView {
 				+ "	-fx-background-insets: 0, 0 0 1 0 ;" + "	-fx-background-radius: 0 ;");
 		VBox.setMargin(passwordPasswordField, new Insets(0, 0, 20, 0));
 
+		errorMessage.setVisible(false);
+		errorMessage.setFont(Font.font(16));
+		errorMessage.setTextFill(Color.RED);
+		VBox.setMargin(errorMessage, new Insets(20, 0, 20, 0));
+
 		loginButton.setFont(Font.font(16));
 		loginButton.setStyle("-fx-background-color: blue; -fx-text-fill: white; -fx-background-radius: 10px;");
 		loginButton.setPadding(new Insets(15, 0, 15, 0));
@@ -117,7 +130,7 @@ public class LoginView {
 		createAccountHBox.getChildren().addAll(createAccountLabel, createAccountHyperLink);
 		dividerHBox.getChildren().addAll(line1, orLabel, line2);
 		formVBox.getChildren().addAll(usernameLabel, usernameTextField, passwordLabel, passwordPasswordField);
-		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, loginButton, dividerHBox,
+		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, errorMessage, loginButton, dividerHBox,
 				createAccountHBox);
 		mainHBox.getChildren().addAll(imageVBox, contentVBox);
 	}
@@ -141,6 +154,7 @@ public class LoginView {
 		passwordLabel = new Label("Password");
 		orLabel = new Label("or");
 		createAccountLabel = new Label("New to CaLouseIF?");
+		errorMessage = new Label();
 
 		usernameTextField = new TextField();
 
