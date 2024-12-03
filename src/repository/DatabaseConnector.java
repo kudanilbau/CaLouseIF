@@ -18,13 +18,11 @@ public class DatabaseConnector{
 	private static DatabaseConnector db; 
 	
 	private Connection con;
-	private Statement st;
 	
 	private DatabaseConnector() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			st = con.createStatement();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -35,22 +33,8 @@ public class DatabaseConnector{
 		return db;
 	}
 	
-	public void executeUpdate(String query) {
-		try {
-			st.execute(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public Connection getConnection() {
+		return con;
 	}
-
-	public ResultSet executeQuery(String query) {
-		try {
-			ResultSet rs = st.executeQuery(query);
-			return rs;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
+	
 }
