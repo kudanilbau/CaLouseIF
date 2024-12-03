@@ -1,4 +1,4 @@
-package main.views;
+package view;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -13,9 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import main.controllers.ItemController;
 
-public class SellerView extends Application {
+public class SellerView {
 	private Button uploadbutton;
 	private TextField namaItem, categoryItem,ukuranItem, hargaItem;
 	private Button submit;
@@ -23,7 +22,7 @@ public class SellerView extends Application {
 	public String ItemName, ItemCategory;
 
 	public Integer itemPrice, itemSize;
-	private ItemController controller;
+//	private ItemController controller;
 
 	
 	public void uploadView(Stage primaryStage) {
@@ -98,21 +97,10 @@ public class SellerView extends Application {
 			}
 			
 		});
-		
-		Scene scene = new Scene(root, 400, 200);
-		primaryStage.setScene(scene);
-		primaryStage.show();
 	}
 	
 	
 	public void submitItem() {
 
 	}
-
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
