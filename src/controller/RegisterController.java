@@ -11,8 +11,9 @@ public class RegisterController {
 		router = Router.getInstance();
 	}
 
-	public void handleRegister(String username, String password, String phoneNumber, String address) {
+	public void handleRegister(String username, String password, String phoneNumber, String address) throws Exception {
 		System.out.println(username + " " + password + " " + phoneNumber + " " + address);
+		throw new Exception("Empty");
 	}
 
 	public void handleLoginHyperLink(ActionEvent e) {

@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 
@@ -22,7 +23,7 @@ public class RegisterView {
 	private VBox imageVBox, contentVBox, formVBox;
 	private HBox mainHBox, dividerHBox, loginAccountHBox;
 	private Label titleLabel, subTitleLabel, usernameLabel, passwordLabel, phoneNumberLabel, addressLabel, orLabel,
-			createAccountLabel;
+			createAccountLabel, errorMessageLabel;
 	private TextField usernameTextField, phoneNumberTextField, addressTextField;
 	private PasswordField passwordPasswordField;
 	private Button registerButton;
@@ -42,8 +43,16 @@ public class RegisterView {
 	private void initActionComponent() {
 		registerButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				controller.handleRegister(usernameTextField.getText(), passwordPasswordField.getText(),
-						phoneNumberTextField.getText(), addressTextField.getText());
+				try {
+					controller.handleRegister(usernameTextField.getText(), passwordPasswordField.getText(),
+							phoneNumberTextField.getText(), addressTextField.getText());
+					errorMessageLabel.setText("");
+					errorMessageLabel.setVisible(false);					
+				} catch (Exception ex) {
+					errorMessageLabel.setText(ex.getMessage());
+					errorMessageLabel.setVisible(true);
+					
+				}
 			}
 		});
 		registerButton.setOnMouseEntered(e -> {
@@ -104,6 +113,11 @@ public class RegisterView {
 				+ "	-fx-background-insets: 0, 0 0 1 0 ;" + "	-fx-background-radius: 0;");
 		VBox.setMargin(phoneNumberTextField, new Insets(0, 0, 20, 0));
 
+		errorMessageLabel.setFont(Font.font(16));
+		errorMessageLabel.setTextFill(Color.RED);
+		errorMessageLabel.setVisible(false);
+		VBox.setMargin(errorMessageLabel, new Insets(0, 0, 20, 0));
+
 		registerButton.setFont(Font.font(16));
 		registerButton.setStyle("-fx-background-color: blue; -fx-text-fill: white; -fx-background-radius: 10px;");
 		registerButton.setPadding(new Insets(15, 0, 15, 0));
@@ -132,7 +146,7 @@ public class RegisterView {
 		dividerHBox.getChildren().addAll(line1, orLabel, line2);
 		formVBox.getChildren().addAll(usernameLabel, usernameTextField, passwordLabel, passwordPasswordField,
 				phoneNumberLabel, phoneNumberTextField, addressLabel, addressTextField);
-		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, registerButton, dividerHBox,
+		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, errorMessageLabel, registerButton, dividerHBox,
 				loginAccountHBox);
 		mainHBox.getChildren().addAll(imageVBox, contentVBox);
 	}
@@ -158,6 +172,7 @@ public class RegisterView {
 		addressLabel = new Label("Address");
 		orLabel = new Label("or");
 		createAccountLabel = new Label("Already have an account?");
+		errorMessageLabel = new Label();
 
 		usernameTextField = new TextField();
 		phoneNumberTextField = new TextField("+62");
