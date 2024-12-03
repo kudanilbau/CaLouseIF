@@ -87,24 +87,24 @@ public class LoginView {
 		formVBox.setAlignment(Pos.CENTER_LEFT);
 		VBox.setVgrow(formVBox, Priority.ALWAYS);
 
-		usernameLabel.setFont(Font.font(16));
-		usernameTextField.setFont(Font.font(16));
+		usernameLabel.setFont(Font.font(14));
+		usernameTextField.setFont(Font.font(14));
 		usernameTextField.setStyle("-fx-background-color: -fx-text-box-border, -fx-background ;"
 				+ "	-fx-background-insets: 0, 0 0 1 0 ;" + "	-fx-background-radius: 0;");
 		VBox.setMargin(usernameTextField, new Insets(0, 0, 20, 0));
 
-		passwordLabel.setFont(Font.font(16));
-		passwordPasswordField.setFont(Font.font(16));
+		passwordLabel.setFont(Font.font(14));
+		passwordPasswordField.setFont(Font.font(14));
 		passwordPasswordField.setStyle("-fx-background-color: -fx-text-box-border, -fx-background ;"
 				+ "	-fx-background-insets: 0, 0 0 1 0 ;" + "	-fx-background-radius: 0 ;");
 		VBox.setMargin(passwordPasswordField, new Insets(0, 0, 20, 0));
 
 		errorMessageLabel.setVisible(false);
-		errorMessageLabel.setFont(Font.font(16));
+		errorMessageLabel.setFont(Font.font(12));
 		errorMessageLabel.setTextFill(Color.RED);
 		VBox.setMargin(errorMessageLabel, new Insets(0, 0, 20, 0));
 
-		loginButton.setFont(Font.font(16));
+		loginButton.setFont(Font.font(14));
 		loginButton.setStyle("-fx-background-color: blue; -fx-text-fill: white; -fx-background-radius: 10px;");
 		loginButton.setPadding(new Insets(15, 0, 15, 0));
 		loginButton.setMaxWidth(Double.MAX_VALUE);
@@ -115,7 +115,7 @@ public class LoginView {
 		line1.setEndX(170);
 		line2.setEndX(170);
 
-		orLabel.setFont(Font.font(16));
+		orLabel.setFont(Font.font(14));
 		orLabel.setPadding(new Insets(0, 5, 0, 5));
 		orLabel.setMinWidth(Region.USE_PREF_SIZE);
 		orLabel.setMinHeight(Region.USE_PREF_SIZE);
@@ -123,8 +123,8 @@ public class LoginView {
 
 		createAccountHBox.setAlignment(Pos.CENTER);
 		createAccountHBox.setPadding(new Insets(10));
-		createAccountLabel.setFont(Font.font(16));
-		createAccountHyperLink.setFont(Font.font(16));
+		createAccountLabel.setFont(Font.font(14));
+		createAccountHyperLink.setFont(Font.font(14));
 	}
 
 	private void addComponent() {

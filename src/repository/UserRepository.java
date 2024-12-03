@@ -94,7 +94,7 @@ public class UserRepository {
 		return user;
 	}
 
-	public User createUser(String username, String password, String phone_Number, String address) throws Exception {
+	public User createUser(String username, String password, String phone_Number, String address, String role) throws Exception {
 //		check if user already exist
 		User user = getUserByUsername(username);
 		if (user != null) {
@@ -107,7 +107,7 @@ public class UserRepository {
 //		generate user id
 		UUID uuid = UUID.randomUUID();
 
-		user = new User(uuid.toString(), username, encryptedPassword, phone_Number, address, "user");
+		user = new User(uuid.toString(), username, encryptedPassword, phone_Number, address, role);
 		Connection con = db.getConnection();
 		String query = "INSERT INTO user VALUES(?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement pstmt = con.prepareStatement(query)) {

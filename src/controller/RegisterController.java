@@ -14,11 +14,11 @@ public class RegisterController {
 		this.userRepository = userRepository;
 	}
 
-	public void handleRegister(String username, String password, String phoneNumber, String address) throws Exception {
-		if (username.isEmpty() || password.isEmpty() || phoneNumber.isEmpty() || address.isEmpty()) {
+	public void handleRegister(String username, String password, String phoneNumber, String address, String role) throws Exception {
+		if (username.isEmpty() || password.isEmpty() || phoneNumber.isEmpty() || address.isEmpty() || role.isEmpty()) {
 			throw new Exception("Field must be filled");
 		}
-		userRepository.createUser(username, password, phoneNumber, address);
+		userRepository.createUser(username, password, phoneNumber, address, role);
 		router.navigateTo(PageData.loginPage());
 	}
 
