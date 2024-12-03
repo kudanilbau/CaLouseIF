@@ -18,11 +18,11 @@ public class PageData {
 		RegisterController controller = new RegisterController();
 		return new RegisterView(controller).asNode();
 	}
-	
+
 	public static Node sellerUploadPage() {
 		return new SellerUploadView().asNode();
 	}
-	
+
 	public static Node sellerEditPage() {
 		return new SellerEditView().asNode();
 	}
