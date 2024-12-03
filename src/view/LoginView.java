@@ -22,7 +22,8 @@ import javafx.scene.text.Font;
 public class LoginView {
 	private VBox imageVBox, contentVBox, formVBox;
 	private HBox mainHBox, dividerHBox, createAccountHBox;
-	private Label titleLabel, subTitleLabel, usernameLabel, passwordLabel, orLabel, createAccountLabel, errorMessageLabel;
+	private Label titleLabel, subTitleLabel, usernameLabel, passwordLabel, orLabel, createAccountLabel,
+			errorMessageLabel;
 	private TextField usernameTextField;
 	private PasswordField passwordPasswordField;
 	private Button loginButton;
@@ -130,8 +131,8 @@ public class LoginView {
 		createAccountHBox.getChildren().addAll(createAccountLabel, createAccountHyperLink);
 		dividerHBox.getChildren().addAll(line1, orLabel, line2);
 		formVBox.getChildren().addAll(usernameLabel, usernameTextField, passwordLabel, passwordPasswordField);
-		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, errorMessageLabel, loginButton, dividerHBox,
-				createAccountHBox);
+		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, errorMessageLabel, loginButton,
+				dividerHBox, createAccountHBox);
 		mainHBox.getChildren().addAll(imageVBox, contentVBox);
 	}
 

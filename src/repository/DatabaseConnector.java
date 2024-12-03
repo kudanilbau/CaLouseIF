@@ -3,7 +3,7 @@ package repository;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class DatabaseConnector{
+public class DatabaseConnector {
 
 	private static final String HOST = "localhost";
 	private static final String PORT = "3306";
@@ -11,11 +11,11 @@ public class DatabaseConnector{
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "";
 	private static final String URL = String.format("jdbc:mysql://%s:%s/%s", HOST, PORT, DATABASE);
-	
-	private static DatabaseConnector db; 
-	
+
+	private static DatabaseConnector db;
+
 	private Connection con;
-	
+
 	private DatabaseConnector() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -26,12 +26,13 @@ public class DatabaseConnector{
 	}
 
 	public static DatabaseConnector getInstance() {
-		if(db == null) db = new DatabaseConnector();
+		if (db == null)
+			db = new DatabaseConnector();
 		return db;
 	}
-	
+
 	public Connection getConnection() {
 		return con;
 	}
-	
+
 }

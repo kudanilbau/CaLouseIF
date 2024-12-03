@@ -16,7 +16,7 @@ public class LoginController {
 
 	public void handleLogin(String username, String password) throws Exception {
 		userRepository.getUserByUsernameAndPassword(username, password);
-		
+
 	}
 
 	public void handleCreateAccountHyperLink(ActionEvent e) {

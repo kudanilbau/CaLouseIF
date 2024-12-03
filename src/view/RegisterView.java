@@ -47,11 +47,11 @@ public class RegisterView {
 					controller.handleRegister(usernameTextField.getText(), passwordPasswordField.getText(),
 							phoneNumberTextField.getText(), addressTextField.getText());
 					errorMessageLabel.setText("");
-					errorMessageLabel.setVisible(false);					
+					errorMessageLabel.setVisible(false);
 				} catch (Exception ex) {
 					errorMessageLabel.setText(ex.getMessage());
 					errorMessageLabel.setVisible(true);
-					
+
 				}
 			}
 		});
@@ -146,8 +146,8 @@ public class RegisterView {
 		dividerHBox.getChildren().addAll(line1, orLabel, line2);
 		formVBox.getChildren().addAll(usernameLabel, usernameTextField, passwordLabel, passwordPasswordField,
 				phoneNumberLabel, phoneNumberTextField, addressLabel, addressTextField);
-		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, errorMessageLabel, registerButton, dividerHBox,
-				loginAccountHBox);
+		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, errorMessageLabel, registerButton,
+				dividerHBox, loginAccountHBox);
 		mainHBox.getChildren().addAll(imageVBox, contentVBox);
 	}
 
