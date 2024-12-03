@@ -16,7 +16,7 @@ public class PageData {
 	}
 
 	public static Node registerPage() {
-		RegisterController controller = new RegisterController();
+		RegisterController controller = new RegisterController(new UserRepository());
 		return new RegisterView(controller).asNode();
 	}
 

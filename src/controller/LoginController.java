@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.event.ActionEvent;
-import model.User;
 import repository.UserRepository;
 import router.PageData;
 import router.Router;
@@ -16,10 +15,8 @@ public class LoginController {
 	}
 
 	public void handleLogin(String username, String password) throws Exception {
-		User user = userRepository.getUserByUsernameAndPassword(username, password);
-		if(user == null) {
-			throw new Exception("Incorrect username or password");
-		}
+		userRepository.getUserByUsernameAndPassword(username, password);
+		
 	}
 
 	public void handleCreateAccountHyperLink(ActionEvent e) {
