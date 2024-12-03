@@ -21,9 +21,7 @@ public class Main extends Application {
 		// initialize stage in view controller
 		Router.initInstance(primaryStage);
 				
-
 		// launch login at start
-//		Router.getInstance().navigateTo(PageData.LoginPage());
-		Router.getInstance().navigateTo(PageData.sellerUploadPage());
+		Router.getInstance().navigateTo(PageData.loginPage());
 	}
 }
