@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import model.Item;
 
@@ -61,7 +62,7 @@ public class BuyerHomepageView extends BorderPane{
     }
 
     private void styleComponents() {
-        this.setPrefSize(800, 600);
-        itemTable.setPrefHeight(500);
+        this.setPrefSize(Double.MAX_VALUE,Double.MAX_VALUE);
+        VBox.setVgrow(itemTable, Priority.ALWAYS);
     }
 }
