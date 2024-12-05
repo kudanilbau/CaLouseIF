@@ -1,5 +1,6 @@
 package router;
 
+import controller.ItemController;
 import controller.LoginController;
 import controller.RegisterController;
 import controller.UserController;
@@ -74,7 +75,7 @@ public class PageData {
      * @return the {@code Node} representing the buyer's homepage
      */
 	public static Node buyerHomePage() {
-		return new BuyerHomepageView();
+		return new BuyerHomepageView(new ItemController());
 	}
 	
     /**
@@ -83,6 +84,6 @@ public class PageData {
      * @return the {@code Node} representing the buyer's item details page
      */
 	public static Node buyerItemDetailsPage() {
-		return new BuyerHomepageView();
+		return new BuyerHomepageView(new ItemController());
 	}
 }

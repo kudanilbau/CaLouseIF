@@ -1,5 +1,8 @@
 package model;
 
+import javafx.collections.ObservableList;
+import repository.ItemRepository;
+
 public class Item {
 	private String Item_id;
 	private String Item_name;
@@ -99,11 +102,12 @@ public class Item {
 		throw new UnsupportedOperationException();
 	}
 
-	public void BrowseItem(String Item_name) {
-		throw new UnsupportedOperationException();
+	public static ObservableList<Item> BrowseItem() {
+		ItemRepository itemRepository = new ItemRepository();
+		return itemRepository.getAllItem();
 	}
 
-	public void VIewItem() {
+	public void VIewItem(String Item_name) {
 		throw new UnsupportedOperationException();
 	}
 

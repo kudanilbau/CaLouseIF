@@ -38,8 +38,12 @@ public class PasswordEncrypt {
 	}
 
 	public static void main(String[] args) {
-		String password = "admin";
-		System.out.println(UUID.randomUUID());
-		System.out.println(encrypt(password));
+//		String password = "admin";
+//		System.out.println(UUID.randomUUID());
+//		System.out.println(encrypt(password));
+		int MAX_ITERATION = 50;
+		for(int i = 0; i < MAX_ITERATION; i++) {
+			System.out.println(UUID.randomUUID());
+		}
 	}
 }
