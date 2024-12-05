@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import model.User;
 import router.PageData;
 import router.Router;
+import session.UserSession;
 
 public class LoginController {
 	private Router router;
@@ -28,6 +29,8 @@ public class LoginController {
      */
 	public void handleLogin(String username, String password) throws Exception {
 		User user = userController.Login(username, password);
+		UserSession.initInstance(user);
+		
 	}
 
     /**
