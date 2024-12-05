@@ -2,7 +2,6 @@ package view;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -37,9 +36,5 @@ public class BuyerItemDetailsView extends VBox{
     private void styleComponents() {
         this.setAlignment(Pos.CENTER_LEFT);
         this.setPadding(new Insets(20));
-    }
-    public Node asNode() {
-    	return this;
-    }
-   
+    }   
 }

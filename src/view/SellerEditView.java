@@ -1,7 +1,6 @@
 package view;
 
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -49,9 +48,5 @@ public class SellerEditView extends VBox{
 		submitButton.setOnAction(e -> {
 
 		});
-	}
-
-	public Node asNode() {
-		return this;
 	}
 }

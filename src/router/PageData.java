@@ -28,7 +28,7 @@ public class PageData {
 	 */
 	public static Node loginPage() {
 		LoginController controller = new LoginController(new UserController());
-		return new LoginView(controller).asNode();
+		return new LoginView(controller);
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class PageData {
 	 */
 	public static Node registerPage() {
 		RegisterController controller = new RegisterController(new UserController());
-		return new RegisterView(controller).asNode();
+		return new RegisterView(controller);
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class PageData {
 	 * @return a {@code Node} representing the seller upload page view
 	 */
 	public static Node sellerUploadPage() {
-		return new SellerUploadView().asNode();
+		return new SellerUploadView();
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class PageData {
 	 * @return a {@code Node} representing the seller edit page view
 	 */
 	public static Node sellerEditPage() {
-		return new SellerEditView().asNode();
+		return new SellerEditView();
 	}
 	
     /**
@@ -65,7 +65,7 @@ public class PageData {
      * @return the {@code Node} representing the admin dashboard page
      */
 	public static Node adminDashboardPage() {
-		return new AdminDashboardView().asNode();
+		return new AdminDashboardView();
 	}
 	
     /**
@@ -74,7 +74,7 @@ public class PageData {
      * @return the {@code Node} representing the buyer's homepage
      */
 	public static Node buyerHomePage() {
-		return new BuyerHomepageView().asNode();
+		return new BuyerHomepageView();
 	}
 	
     /**
@@ -83,6 +83,6 @@ public class PageData {
      * @return the {@code Node} representing the buyer's item details page
      */
 	public static Node buyerItemDetailsPage() {
-		return new BuyerHomepageView().asNode();
+		return new BuyerHomepageView();
 	}
 }

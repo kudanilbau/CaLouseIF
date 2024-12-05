@@ -4,7 +4,6 @@ import controller.RegisterController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -170,10 +169,6 @@ public class RegisterView extends HBox{
 		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, errorMessageLabel, registerButton,
 				dividerHBox, loginAccountHBox);
 		this.getChildren().addAll(imageVBox, contentVBox);
-	}
-
-	public Node asNode() {
-		return this;
 	}
 
 	private void initComponent() {

@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -56,9 +55,5 @@ public class BuyerHomepageView extends BorderPane{
     private void styleComponents() {
         this.setPrefSize(800, 600);
         itemTable.setPrefHeight(500);
-    }
-
-    public Node asNode() {
-    	return this;
     }
 }
