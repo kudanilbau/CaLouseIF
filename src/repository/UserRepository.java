@@ -37,14 +37,31 @@ public class UserRepository {
 		return user;
 	}
 
-	public User getUserByUsernameAndPassword(String username, String password) throws Exception {
+	/**
+	 * Retrieves a {@code User} object based on the provided username and password.
+	 * <p>
+	 * This method connects to the database, encrypts the provided password, and
+	 * queries the user table for a match. If a user is found, a {@code User} object
+	 * is created and returned. If no match is found, an
+	 * {@code InvalidParameterException} is thrown.
+	 * </p>
+	 *
+	 * @param username the username of the user to retrieve
+	 * @param password the plaintext password of the user to retrieve
+	 * @return a {@code User} object representing the user with the matching
+	 *         credentials
+	 * @throws InvalidParameterException if the username or password is incorrect
+	 * @see PasswordEncrypt#encrypt(String)
+	 * @see User
+	 */
+
+	public User getUserByUsernameAndPassword(String username, String password) throws IllegalArgumentException {
 		User user = null;
 		Connection con = db.getConnection();
 		String query = "SELECT * FROM user WHERE username = ? AND password = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(query)) {
 			String encryptedPassword = PasswordEncrypt.encrypt(password);
 			pstmt.setString(1, username);
-//			pstmt.setString(2, password);
 			pstmt.setString(2, encryptedPassword);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				// check if result has data
@@ -63,10 +80,24 @@ public class UserRepository {
 			e.printStackTrace();
 		}
 		if (user == null) {
-			throw new Exception("Incorrect username or password");
+			throw new IllegalArgumentException("Incorrect username or password");
 		}
 		return user;
 	}
+
+	/**
+	 * Retrieves a {@code User} object based on the provided username.
+	 * <p>
+	 * This method connects to the database and queries the user table for a user
+	 * with the specified username. If a user is found, a {@code User} object is
+	 * created and returned. If no user is found, the method returns {@code null}.
+	 * </p>
+	 *
+	 * @param username the username of the user to retrieve
+	 * @return a {@code User} object representing the user with the specified
+	 *         username, or {@code null} if no user is found
+	 * @see User
+	 */
 
 	public User getUserByUsername(String username) {
 		User user = null;
@@ -93,12 +124,34 @@ public class UserRepository {
 		return user;
 	}
 
-	public User createUser(String username, String password, String phone_Number, String address, String role) throws Exception {
+	/**
+	 * Creates a new {@code User} and stores it in the database.
+	 * <p>
+	 * This method first checks if a user with the given username already exists. If
+	 * the user exists, an {@code Exception} is thrown. Otherwise, the password is
+	 * encrypted, a unique user ID is generated, and the new user is inserted into
+	 * the database. If the insertion fails, an {@code Exception} is thrown.
+	 * </p>
+	 *
+	 * @param username     the username for the new user
+	 * @param password     the plaintext password for the new user
+	 * @param phone_Number the phone number of the new user
+	 * @param address      the address of the new user
+	 * @param role         the role of the new user
+	 * @return the created {@code User} object
+	 * @throws Exception if the username already exists or if the user cannot be
+	 *                   registered
+	 * @see #getUserByUsername(String)
+	 * @see PasswordEncrypt#encrypt(String)
+	 * @see User
+	 */
+
+	public User createUser(String username, String password, String phone_Number, String address, String role)
+			throws Exception {
 //		check if user already exist
 		User user = getUserByUsername(username);
-		if (user != null) {
+		if (user != null)
 			throw new Exception("User already exist");
-		}
 
 //		encrypt password
 		String encryptedPassword = PasswordEncrypt.encrypt(password);

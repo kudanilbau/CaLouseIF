@@ -72,7 +72,7 @@ public class LoginView {
 				+ getClass().getResource("/resources/images/login-image.jpg").toExternalForm() + "');"
 				+ "-fx-background-size: cover;" + "-fx-background-position: center center;"
 				+ "-fx-background-repeat: no-repeat;");
-		imageVBox.setPrefWidth(853.33);
+		imageVBox.setPrefWidth(768);
 		HBox.setHgrow(imageVBox, Priority.ALWAYS);
 
 		HBox.setHgrow(contentVBox, Priority.ALWAYS);
@@ -100,7 +100,7 @@ public class LoginView {
 		VBox.setMargin(passwordPasswordField, new Insets(0, 0, 20, 0));
 
 		errorMessageLabel.setVisible(false);
-		errorMessageLabel.setFont(Font.font(12));
+		errorMessageLabel.setFont(Font.font(10));
 		errorMessageLabel.setTextFill(Color.RED);
 		VBox.setMargin(errorMessageLabel, new Insets(0, 0, 20, 0));
 
@@ -115,16 +115,16 @@ public class LoginView {
 		line1.setEndX(170);
 		line2.setEndX(170);
 
-		orLabel.setFont(Font.font(14));
+		orLabel.setFont(Font.font(12));
 		orLabel.setPadding(new Insets(0, 5, 0, 5));
 		orLabel.setMinWidth(Region.USE_PREF_SIZE);
 		orLabel.setMinHeight(Region.USE_PREF_SIZE);
 		HBox.setMargin(orLabel, new Insets(0, 5, 0, 5));
 
 		createAccountHBox.setAlignment(Pos.CENTER);
-		createAccountHBox.setPadding(new Insets(10));
-		createAccountLabel.setFont(Font.font(14));
-		createAccountHyperLink.setFont(Font.font(14));
+		createAccountHBox.setPadding(new Insets(0, 10, 0, 10));
+		createAccountLabel.setFont(Font.font(12));
+		createAccountHyperLink.setFont(Font.font(12));
 	}
 
 	private void addComponent() {

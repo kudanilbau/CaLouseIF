@@ -1,6 +1,5 @@
 package router;
 
-import java.lang.reflect.Parameter;
 import java.util.Stack;
 
 import javafx.scene.Node;
@@ -21,20 +20,20 @@ public class Router {
 	}
 
 	/**
-	 * Create {@link Router} instance
-	 * 
-	 * @param stage
+	 * Initializes the {@code Router} instance with the specified stage.
+	 *
+	 * @param stage the primary stage to be used by the router
 	 */
 	public static void initInstance(Stage stage) {
 		instance = new Router(stage);
 	}
 
 	/**
-	 * Get {@link Router} instance
-	 * 
-	 * @return ViewController singleton instance
+	 * Returns the current {@code Router} instance.
+	 *
+	 * @return the current {@code Router} instance, or {@code null} if not
+	 *         initialized
 	 */
-
 	public static Router getInstance() {
 		if (instance == null) {
 			System.err.println("Stage is not initialized");
@@ -43,11 +42,10 @@ public class Router {
 	}
 
 	/**
-	 * Change center node to the node provided in {@link Parameter} node and the
-	 * title of the stage
+	 * Navigates to the specified {@code Node} and sets the stage title.
 	 * 
-	 * @param node  Center node
-	 * @param title Sets the value of the property title in stage.
+	 * @param node  the {@code Node} to display as the center content
+	 * @param title the title to set for the stage
 	 */
 	public void navigateTo(Node node, String title) {
 		Node centerNode = appView.getContainer().getCenter();
@@ -59,16 +57,17 @@ public class Router {
 	}
 
 	/**
-	 * Change center node to the node provided in {@link Parameter} node
+	 * Navigates to the specified {@code Node} while keeping the current stage
+	 * title.
 	 * 
-	 * @param node Center node
+	 * @param node the {@code Node} to display as the center content
 	 */
 	public void navigateTo(Node node) {
 		navigateTo(node, stage.getTitle());
 	}
 
 	/**
-	 * Set the center node to the last center node
+	 * Navigates back to the previous view.
 	 */
 	public void back() {
 		if (viewStack.empty()) {

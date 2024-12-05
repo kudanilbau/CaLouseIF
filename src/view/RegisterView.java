@@ -50,9 +50,10 @@ public class RegisterView {
 				try {
 					String role = "";
 					try {
-						role = ((RadioButton)roleToggleGroup.getSelectedToggle()).getText().toLowerCase();
-					}catch(NullPointerException ex) {
-					};
+						role = ((RadioButton) roleToggleGroup.getSelectedToggle()).getText().toLowerCase();
+					} catch (NullPointerException ex) {
+					}
+					;
 					controller.handleRegister(usernameTextField.getText(), passwordPasswordField.getText(),
 							phoneNumberTextField.getText(), addressTextField.getText(), role);
 					errorMessageLabel.setText("");
@@ -80,12 +81,11 @@ public class RegisterView {
 		mainHBox.setPrefWidth(1280);
 		mainHBox.setPrefHeight(720);
 		imageVBox.setStyle("" + "-fx-background-image: url('"
-				+ getClass().getResource("/resources/images/login-image.jpg").toExternalForm() + "');"
+				+ getClass().getResource("/resources/images/register-image.jpg").toExternalForm() + "');"
 				+ "-fx-background-size: cover;" + "-fx-background-position: center center;"
 				+ "-fx-background-repeat: no-repeat;");
-		imageVBox.setPrefWidth(853.33);
+		imageVBox.setPrefWidth(768);
 		HBox.setHgrow(imageVBox, Priority.ALWAYS);
-
 		HBox.setHgrow(contentVBox, Priority.ALWAYS);
 		contentVBox.setPadding(new Insets(20, 40, 20, 40));
 		contentVBox.setAlignment(Pos.CENTER);
@@ -121,20 +121,20 @@ public class RegisterView {
 		phoneNumberTextField.setStyle("-fx-background-color: -fx-text-box-border, -fx-background ;"
 				+ "	-fx-background-insets: 0, 0 0 1 0 ;" + "	-fx-background-radius: 0;");
 		VBox.setMargin(phoneNumberTextField, new Insets(0, 0, 20, 0));
-		
+
 		roleLabel.setFont(Font.font(14));
 		VBox.setMargin(roleLabel, new Insets(0, 0, 5, 0));
-		
+
 		buyerRadioButton.setFont(Font.font(14));
 		HBox.setMargin(buyerRadioButton, new Insets(0, 20, 0, 0));
 		sellerRadioButton.setFont(Font.font(14));
-		HBox.setMargin(roleHBox, new Insets(0, 0, 20 ,0));
+		HBox.setMargin(roleHBox, new Insets(0, 0, 20, 0));
 
-		errorMessageLabel.setFont(Font.font(12));
+		errorMessageLabel.setFont(Font.font(10));
 		errorMessageLabel.setTextFill(Color.RED);
 		errorMessageLabel.setVisible(false);
-		VBox.setMargin(errorMessageLabel, new Insets(0, 0, 20, 0));
 
+		VBox.setMargin(registerButton, new Insets(20, 0, 0, 0));
 		registerButton.setFont(Font.font(14));
 		registerButton.setStyle("-fx-background-color: blue; -fx-text-fill: white; -fx-background-radius: 10px;");
 		registerButton.setPadding(new Insets(15, 0, 15, 0));
@@ -146,16 +146,16 @@ public class RegisterView {
 		line1.setEndX(170);
 		line2.setEndX(170);
 
-		orLabel.setFont(Font.font(14));
+		orLabel.setFont(Font.font(12));
 		orLabel.setPadding(new Insets(0, 5, 0, 5));
 		orLabel.setMinWidth(Region.USE_PREF_SIZE);
 		orLabel.setMinHeight(Region.USE_PREF_SIZE);
 		HBox.setMargin(orLabel, new Insets(0, 5, 0, 5));
 
 		loginAccountHBox.setAlignment(Pos.CENTER);
-		loginAccountHBox.setPadding(new Insets(10));
-		createAccountLabel.setFont(Font.font(14));
-		loginHyperLink.setFont(Font.font(14));
+		loginAccountHBox.setPadding(new Insets(0, 10, 0, 10));
+		createAccountLabel.setFont(Font.font(12));
+		loginHyperLink.setFont(Font.font(12));
 	}
 
 	private void addComponent() {
