@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import router.PageData;
 import router.Router;
+import session.UserSession;
 
 public class AppNavbar extends HBox {
 	private Router router;
@@ -49,6 +50,7 @@ public class AppNavbar extends HBox {
 
 		logoutButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
+				UserSession.getInstance().logout();
 				router.navigateTo(PageData.loginPage());
 			}
 		});
