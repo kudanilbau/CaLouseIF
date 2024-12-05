@@ -19,9 +19,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 
-public class LoginView {
+public class LoginView extends HBox {
 	private VBox imageVBox, contentVBox, formVBox;
-	private HBox mainHBox, dividerHBox, createAccountHBox;
+	private HBox dividerHBox, createAccountHBox;
 	private Label titleLabel, subTitleLabel, usernameLabel, passwordLabel, orLabel, createAccountLabel,
 			errorMessageLabel;
 	private TextField usernameTextField;
@@ -33,6 +33,7 @@ public class LoginView {
 	private LoginController controller;
 
 	public LoginView(LoginController controller) {
+		super();
 		this.controller = controller;
 		initComponent();
 		addComponent();
@@ -66,8 +67,8 @@ public class LoginView {
 	}
 
 	private void styleComponent() {
-		mainHBox.setPrefWidth(1280);
-		mainHBox.setPrefHeight(720);
+		this.setPrefWidth(1280);
+		this.setPrefHeight(720);
 		imageVBox.setStyle("" + "-fx-background-image: url('"
 				+ getClass().getResource("/resources/images/login-image.jpg").toExternalForm() + "');"
 				+ "-fx-background-size: cover;" + "-fx-background-position: center center;"
@@ -133,11 +134,11 @@ public class LoginView {
 		formVBox.getChildren().addAll(usernameLabel, usernameTextField, passwordLabel, passwordPasswordField);
 		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, errorMessageLabel, loginButton,
 				dividerHBox, createAccountHBox);
-		mainHBox.getChildren().addAll(imageVBox, contentVBox);
+		this.getChildren().addAll(imageVBox, contentVBox);
 	}
 
 	public Node asNode() {
-		return mainHBox;
+		return this;
 	}
 
 	private void initComponent() {
@@ -145,7 +146,6 @@ public class LoginView {
 		contentVBox = new VBox();
 		formVBox = new VBox();
 
-		mainHBox = new HBox();
 		dividerHBox = new HBox();
 		createAccountHBox = new HBox();
 

@@ -6,12 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-public class SellerEditView {
-	private VBox mainVBox;
+public class SellerEditView extends VBox{
 	private TextField idItem, namaItem, categoryItem, ukuranItem, hargaItem;
 	private Button submitButton;
 
 	public SellerEditView() {
+		super();
 		initComponent();
 		addComponent();
 		styleComponent();
@@ -19,7 +19,7 @@ public class SellerEditView {
 	}
 
 	public void initComponent() {
-		mainVBox = new VBox(15);
+		
 		idItem = new TextField();
 		namaItem = new TextField();
 		categoryItem = new TextField();
@@ -36,11 +36,12 @@ public class SellerEditView {
 	}
 
 	public void addComponent() {
-		mainVBox.getChildren().addAll(idItem, namaItem, categoryItem, ukuranItem, hargaItem, submitButton);
+		this.getChildren().addAll(idItem, namaItem, categoryItem, ukuranItem, hargaItem, submitButton);
 	}
 
 	public void styleComponent() {
-		mainVBox.setPadding(new Insets(10));
+		this.setSpacing(15);
+		this.setPadding(new Insets(10));
 		idItem.setDisable(true);
 	}
 
@@ -51,6 +52,6 @@ public class SellerEditView {
 	}
 
 	public Node asNode() {
-		return mainVBox;
+		return this;
 	}
 }

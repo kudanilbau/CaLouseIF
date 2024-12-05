@@ -7,19 +7,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class BuyerItemDetailsView {
-    private VBox root;
+public class BuyerItemDetailsView extends VBox{
     private Label nameLabel, categoryLabel, sizeLabel, priceLabel;
     private Button wishlistButton, purchaseButton, offerButton;
 
     public BuyerItemDetailsView() {
+		super();
         initComponents();
         addComponents();
         styleComponents();
     }
 
     private void initComponents() {
-        root = new VBox(10);
 
         nameLabel = new Label("Item Name: ");
         categoryLabel = new Label("Category: ");
@@ -32,15 +31,15 @@ public class BuyerItemDetailsView {
     }
 
     private void addComponents() {
-        root.getChildren().addAll(nameLabel, categoryLabel, sizeLabel, priceLabel, wishlistButton, purchaseButton, offerButton);
+        this.getChildren().addAll(nameLabel, categoryLabel, sizeLabel, priceLabel, wishlistButton, purchaseButton, offerButton);
     }
 
     private void styleComponents() {
-        root.setAlignment(Pos.CENTER_LEFT);
-        root.setPadding(new Insets(20));
+        this.setAlignment(Pos.CENTER_LEFT);
+        this.setPadding(new Insets(20));
     }
     public Node asNode() {
-    	return root;
+    	return this;
     }
    
 }

@@ -21,9 +21,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 
-public class RegisterView {
+public class RegisterView extends HBox{
 	private VBox imageVBox, contentVBox, formVBox;
-	private HBox mainHBox, dividerHBox, loginAccountHBox, roleHBox;
+	private HBox dividerHBox, loginAccountHBox, roleHBox;
 	private Label titleLabel, subTitleLabel, usernameLabel, passwordLabel, phoneNumberLabel, addressLabel, roleLabel,
 			orLabel, createAccountLabel, errorMessageLabel;
 	private TextField usernameTextField, phoneNumberTextField, addressTextField;
@@ -37,6 +37,7 @@ public class RegisterView {
 	private RegisterController controller;
 
 	public RegisterView(RegisterController controller) {
+		super();
 		this.controller = controller;
 		initComponent();
 		addComponent();
@@ -78,8 +79,8 @@ public class RegisterView {
 	}
 
 	private void styleComponent() {
-		mainHBox.setPrefWidth(1280);
-		mainHBox.setPrefHeight(720);
+		this.setPrefWidth(1280);
+		this.setPrefHeight(720);
 		imageVBox.setStyle("" + "-fx-background-image: url('"
 				+ getClass().getResource("/resources/images/register-image.jpg").toExternalForm() + "');"
 				+ "-fx-background-size: cover;" + "-fx-background-position: center center;"
@@ -168,11 +169,11 @@ public class RegisterView {
 				phoneNumberLabel, phoneNumberTextField, addressLabel, addressTextField, roleLabel, roleHBox);
 		contentVBox.getChildren().addAll(titleLabel, subTitleLabel, formVBox, errorMessageLabel, registerButton,
 				dividerHBox, loginAccountHBox);
-		mainHBox.getChildren().addAll(imageVBox, contentVBox);
+		this.getChildren().addAll(imageVBox, contentVBox);
 	}
 
 	public Node asNode() {
-		return mainHBox;
+		return this;
 	}
 
 	private void initComponent() {
@@ -180,7 +181,6 @@ public class RegisterView {
 		contentVBox = new VBox();
 		formVBox = new VBox();
 
-		mainHBox = new HBox();
 		dividerHBox = new HBox();
 		loginAccountHBox = new HBox();
 		roleHBox = new HBox();

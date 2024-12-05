@@ -14,21 +14,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import model.Item;
 
-public class AdminDashboardView {
-    private BorderPane root;
+public class AdminDashboardView extends BorderPane{
     private TableView<Item> itemTable;
     private Button approveButton, declineButton;
     private TextField reasonField;
 
     public AdminDashboardView() {
+		super();
         initComponents();
         addComponents();
         styleComponents();
     }
 
     private void initComponents() {
-        root = new BorderPane();
-
         itemTable = new TableView<>();
         TableColumn<Item, String> nameColumn = new TableColumn<>("Item Name");
         TableColumn<Item, String> categoryColumn = new TableColumn<>("Category");
@@ -53,16 +51,16 @@ public class AdminDashboardView {
         actionBar.setAlignment(Pos.CENTER);
         actionBar.setPadding(new Insets(10));
 
-        root.setCenter(itemTable);
-        root.setBottom(actionBar);
+        this.setCenter(itemTable);
+        this.setBottom(actionBar);
     }
 
     private void styleComponents() { 
-        root.setPrefSize(800, 600);
+        this.setPrefSize(800, 600);
         itemTable.setPrefHeight(500);
     }
 
     public Node asNode() {
-    	return root;
+    	return this;
     }
 }

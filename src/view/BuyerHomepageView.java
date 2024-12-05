@@ -14,20 +14,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Item;
 
-public class BuyerHomepageView {
-    private BorderPane root;
+public class BuyerHomepageView extends BorderPane{
     private TableView<Item> itemTable;
     private Button wishlistButton, purchaseHistoryButton;
 
     public BuyerHomepageView() {
+		super();
         initComponents();
         addComponents();
         styleComponents();
     }
 
     private void initComponents() {
-        root = new BorderPane();
-
         itemTable = new TableView<>();
         TableColumn<Item, String> nameColumn = new TableColumn<>("Item Name");
         TableColumn<Item, String> categoryColumn = new TableColumn<>("Category");
@@ -51,16 +49,16 @@ public class BuyerHomepageView {
         VBox mainContent = new VBox(10, itemTable);
         mainContent.setPadding(new Insets(10));
 
-        root.setTop(topBar);
-        root.setCenter(mainContent);
+        this.setTop(topBar);
+        this.setCenter(mainContent);
     }
 
     private void styleComponents() {
-        root.setPrefSize(800, 600);
+        this.setPrefSize(800, 600);
         itemTable.setPrefHeight(500);
     }
 
     public Node asNode() {
-    	return root;
+    	return this;
     }
 }
