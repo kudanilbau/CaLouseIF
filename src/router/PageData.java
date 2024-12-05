@@ -4,6 +4,8 @@ import controller.LoginController;
 import controller.RegisterController;
 import controller.UserController;
 import javafx.scene.Node;
+import view.AdminDashboardView;
+import view.BuyerHomepageView;
 import view.LoginView;
 import view.RegisterView;
 import view.SellerEditView;
@@ -55,5 +57,32 @@ public class PageData {
 	 */
 	public static Node sellerEditPage() {
 		return new SellerEditView().asNode();
+	}
+	
+    /**
+     * Returns the {@code Node} for the admin dashboard page.
+     *
+     * @return the {@code Node} representing the admin dashboard page
+     */
+	public static Node adminDashboardPage() {
+		return new AdminDashboardView().asNode();
+	}
+	
+    /**
+     * Returns the {@code Node} for the buyer's homepage.
+     *
+     * @return the {@code Node} representing the buyer's homepage
+     */
+	public static Node buyerHomePage() {
+		return new BuyerHomepageView().asNode();
+	}
+	
+    /**
+     * Returns the {@code Node} for the item details page for a buyer.
+     *
+     * @return the {@code Node} representing the buyer's item details page
+     */
+	public static Node buyerItemDetailsPage() {
+		return new BuyerHomepageView().asNode();
 	}
 }

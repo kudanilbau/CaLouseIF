@@ -30,7 +30,14 @@ public class LoginController {
 	public void handleLogin(String username, String password) throws Exception {
 		User user = userController.Login(username, password);
 		UserSession.initInstance(user);
-		
+		if(user.getRole().equals("admin")) {
+			router.navigateTo(PageData.adminDashboardPage());
+		}else if(user.getRole().equals("seller")) {
+//			Ke dashboard
+			router.navigateTo(PageData.sellerUploadPage());
+		}else if(user.getRole().equals("buyer")) {
+			router.navigateTo(PageData.buyerHomePage());
+		}
 	}
 
     /**
