@@ -60,6 +60,7 @@ public class Router {
 		}
 		if(node.getClass().equals(LoginView.class) || node.getClass().equals(RegisterView.class)) {
 			setAppNavbarVisible(false);
+			viewStack.clear();
 		}else {
 			setAppNavbarVisible(true);
 		}
@@ -85,10 +86,10 @@ public class Router {
 			return;
 		}
 		Node lastCenterNode = viewStack.pop();
-//		Disable navbar on login and register and clear viewStack
+//		Can't go back to login page
 		if(lastCenterNode.getClass().equals(LoginView.class) || lastCenterNode.getClass().equals(RegisterView.class)) {
-			setAppNavbarVisible(false);
 			viewStack.clear();
+			return;
 		}
 		appView.getContainer().setCenter(lastCenterNode);
 	}
