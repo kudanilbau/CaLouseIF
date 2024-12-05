@@ -4,13 +4,17 @@ import java.util.Stack;
 
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import view.AppNavbar;
 import view.AppView;
+import view.LoginView;
+import view.RegisterView;
 
 public class Router {
 	private static Router instance = null;
 
 	private Stage stage;
 	private AppView appView;
+	private static AppNavbar appNavbar;
 	private Stack<Node> viewStack;
 
 	private Router(Stage stage) {
@@ -18,7 +22,7 @@ public class Router {
 		appView = new AppView(stage);
 		viewStack = new Stack<>();
 	}
-
+	
 	/**
 	 * Initializes the {@code Router} instance with the specified stage.
 	 *
@@ -26,6 +30,8 @@ public class Router {
 	 */
 	public static void initInstance(Stage stage) {
 		instance = new Router(stage);
+//		Need router object to be initialized first
+		appNavbar = new AppNavbar();
 	}
 
 	/**
@@ -52,6 +58,11 @@ public class Router {
 		if (centerNode != null) {
 			viewStack.add(centerNode);
 		}
+		if(node.getClass().equals(LoginView.class) || node.getClass().equals(RegisterView.class)) {
+			setAppNavbarVisible(false);
+		}else {
+			setAppNavbarVisible(true);
+		}
 		appView.getContainer().setCenter(node);
 		stage.setTitle(title);
 	}
@@ -74,6 +85,23 @@ public class Router {
 			return;
 		}
 		Node lastCenterNode = viewStack.pop();
+//		Disable navbar on login and register and clear viewStack
+		if(lastCenterNode.getClass().equals(LoginView.class) || lastCenterNode.getClass().equals(RegisterView.class)) {
+			setAppNavbarVisible(false);
+			viewStack.clear();
+		}
 		appView.getContainer().setCenter(lastCenterNode);
+	}
+	
+	public void setAppNavbarVisible(boolean value) {
+		if(value == false) {
+			appView.setTop(null);
+		}else {
+			appView.setTop(appNavbar);
+		}
+	}
+	
+	public static AppNavbar getAppNavBar() {
+		return appNavbar;
 	}
 }

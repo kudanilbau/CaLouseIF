@@ -6,20 +6,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import router.Router;
 
-public class AppView {
-	private BorderPane container;
+public class AppView extends BorderPane {
 	private Scene scene;
-
+	
 	public BorderPane getContainer() {
-		return container;
-	}
-
-	private void init() {
-		container = new BorderPane();
-	}
-
-	private void setLayout() {
-//		container.setTop(container);
+		return this;
 	}
 
 	private void setSceneAction() {
@@ -29,12 +20,10 @@ public class AppView {
 			}
 		});
 	}
-
+	
 	public AppView(Stage stage) {
-		init();
-		setLayout();
-
-		scene = new Scene(container, 1280, 720);
+		super();
+		scene = new Scene(this, 1280, 720);
 		setSceneAction();
 
 		stage.setScene(scene);
