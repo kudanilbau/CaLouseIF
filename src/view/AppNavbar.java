@@ -70,4 +70,8 @@ public class AppNavbar extends HBox {
 	public void insertComponent(Node node) {
 		customComponentContainer.getChildren().add(0, node);
 	}
+	
+	public void clearComponent() {
+		customComponentContainer.getChildren().clear();
+	}
 }

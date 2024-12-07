@@ -58,11 +58,13 @@ public class Router {
 		if (centerNode != null) {
 			viewStack.add(centerNode);
 		}
+//		if navigating to login or register, disable navbar and clear custom component. else enable navbar
 		if(node.getClass().equals(LoginView.class) || node.getClass().equals(RegisterView.class)) {
-			setAppNavbarVisible(false);
+			appView.setTop(null);
+			appNavbar.clearComponent();
 			viewStack.clear();
-		}else {
-			setAppNavbarVisible(true);
+		} else {
+			appView.setTop(appNavbar);
 		}
 		appView.getContainer().setCenter(node);
 		stage.setTitle(title);
@@ -92,14 +94,6 @@ public class Router {
 			return;
 		}
 		appView.getContainer().setCenter(lastCenterNode);
-	}
-	
-	public void setAppNavbarVisible(boolean value) {
-		if(value == false) {
-			appView.setTop(null);
-		}else {
-			appView.setTop(appNavbar);
-		}
 	}
 	
 	public static AppNavbar getAppNavBar() {
