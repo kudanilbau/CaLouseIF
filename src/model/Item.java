@@ -2,6 +2,7 @@ package model;
 
 import javafx.collections.ObservableList;
 import repository.ItemRepository;
+import session.UserSession;
 
 public class Item {
 	private String Item_id;
@@ -119,8 +120,22 @@ public class Item {
 		throw new UnsupportedOperationException();
 	}
 
-	public void OfferPrice(String Item_id, String item_price) {
-		throw new UnsupportedOperationException();
+	public static void OfferPrice(String Item_id, String item_price) throws IllegalArgumentException{
+		ItemRepository itemRepository = new ItemRepository();
+		Item item = itemRepository.getItemById(Item_id);
+		int prevOfferPrice = 0;
+		String[]itemOfferStatus = item.getItem_offer_status().split(",");
+		if(itemOfferStatus[0].equals("offer")) {
+			prevOfferPrice = Integer.parseInt(itemOfferStatus[1]);
+		}
+		int currentOfferPrice = Integer.parseInt(item_price);
+		if(currentOfferPrice <= prevOfferPrice) {
+			throw new IllegalArgumentException("Offer must be more than previous offer");
+		}
+		String currentUserId = UserSession.getInstance().getUser().getUser_id();
+		System.out.println(currentUserId);
+		String offer = String.format("offer,%s,%s", item_price, currentUserId);
+		itemRepository.updateOfferItem(Item_id, offer);
 	}
 
 	public void AcceptOffer(String Item_id) {

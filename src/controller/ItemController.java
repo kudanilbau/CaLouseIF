@@ -15,10 +15,11 @@ public class ItemController {
 	public void DeleteItem(String Item_id) {
 		throw new UnsupportedOperationException();
 	}
+
 	public ObservableList<Item> BrowseItem() {
 		return Item.BrowseItem();
 	}
-	
+
 	public void VIewItem(String Item_name) {
 		throw new UnsupportedOperationException();
 	}
@@ -31,8 +32,18 @@ public class ItemController {
 		throw new UnsupportedOperationException();
 	}
 
-	public void OfferPrice(String Item_id, String item_price) {
-		throw new UnsupportedOperationException();
+	public void OfferPrice(String Item_id, String item_price) throws IllegalArgumentException{
+		if(item_price.isEmpty()) {
+			throw new IllegalArgumentException("Offer cannot be empty");
+		}
+		try {
+			if(Integer.parseInt(item_price) < 1) {
+				throw new IllegalArgumentException("Offer must be more than zero");
+			}			
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("Offer must be a number");
+		}
+		Item.OfferPrice(Item_id, item_price);
 	}
 
 	public void AcceptOffer(String Item_id) {

@@ -90,7 +90,7 @@ public class PageData {
 	 * @return the {@code Node} representing the buyer's item details page
 	 */
 	public static Node buyerItemDetailsPage(Item item) {
-		return new BuyerItemDetailsView(new BuyerItemDetailsController(), item);
+		return new BuyerItemDetailsView(new BuyerItemDetailsController(new ItemController()), item);
 	}
 
 	public static Parent buyerNavbar() {

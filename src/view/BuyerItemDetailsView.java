@@ -20,7 +20,7 @@ public class BuyerItemDetailsView extends VBox {
 	private TextField offerInputTextField;
 	private Label nameLabel, categoryLabel, sizeLabel, priceLabel, offerLabel;
 	private Label nameDetailLabel, categoryDetailLabel, sizeDetailLabel, priceDetailLabel, offerDetailLabel;
-	private Label errorMessageLabel;
+	private Label messageLabel;
 	private Button addToWishlistButton, purchaseButton, offerButton;
 
 	private BuyerItemDetailsController buyerItemDetailsController;
@@ -28,6 +28,7 @@ public class BuyerItemDetailsView extends VBox {
 	public BuyerItemDetailsView(BuyerItemDetailsController buyerItemDetailsController, Item item) {
 		super();
 		this.item = item;
+		this.buyerItemDetailsController = buyerItemDetailsController;
 		initComponents();
 		addComponents();
 		styleComponents();
@@ -44,7 +45,7 @@ public class BuyerItemDetailsView extends VBox {
 		sizeLabel = new Label("Size: ");
 		priceLabel = new Label("Price: ");
 		offerLabel = new Label("Current Offer: ");
-		errorMessageLabel = new Label();
+		messageLabel = new Label();
 
 		nameDetailLabel = new Label(item.getItem_name());
 		categoryDetailLabel = new Label(item.getItem_category());
@@ -72,7 +73,7 @@ public class BuyerItemDetailsView extends VBox {
 		itemDetailGridPane.add(priceDetailLabel, 1, 3);
 		itemDetailGridPane.add(offerDetailLabel, 1, 4);
 
-		offerInputHBox.getChildren().addAll(offerButton, offerInputTextField, errorMessageLabel);
+		offerInputHBox.getChildren().addAll(offerButton, offerInputTextField, messageLabel);
 
 		this.getChildren().addAll(itemDetailGridPane, addToWishlistButton, purchaseButton, offerInputHBox);
 	}
@@ -84,8 +85,6 @@ public class BuyerItemDetailsView extends VBox {
 
 		itemDetailGridPane.setHgap(10);
 		itemDetailGridPane.setVgap(10);
-
-		errorMessageLabel.setTextFill(Color.RED);
 
 		offerInputTextField.setPromptText("offer price");
 	}
@@ -101,10 +100,14 @@ public class BuyerItemDetailsView extends VBox {
 		offerButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
 				try {
-					buyerItemDetailsController.handleOfferButton(item, offerInputTextField.getText());
-					errorMessageLabel.setText("");
-				} catch (Exception ex) {
-					errorMessageLabel.setText(ex.getMessage());
+					String offerInput = offerInputTextField.getText();
+					buyerItemDetailsController.handleOfferButton(item, offerInput);
+					messageLabel.setTextFill(Color.GREEN);
+					offerDetailLabel.setText(offerInput);
+					messageLabel.setText("Success");
+				} catch (IllegalArgumentException ex) {
+					messageLabel.setTextFill(Color.RED);
+					messageLabel.setText(ex.getMessage());
 				}
 			}
 		});
