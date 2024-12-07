@@ -18,6 +18,7 @@ public class AppNavbar extends HBox {
 		super();
 		this.router = Router.getInstance();
 		defaultComponent();
+		this.setPadding(new Insets(15));
 	}
 
 	/**
