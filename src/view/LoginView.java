@@ -9,6 +9,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -43,14 +44,7 @@ public class LoginView extends HBox {
 	private void initActionComponent() {
 		loginButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				try {
-					controller.handleLogin(usernameTextField.getText(), passwordPasswordField.getText());
-					errorMessageLabel.setVisible(false);
-					errorMessageLabel.setText("");
-				} catch (Exception ex) {
-					errorMessageLabel.setVisible(true);
-					errorMessageLabel.setText(ex.getMessage());
-				}
+				loginAction();				
 			}
 		});
 		loginButton.setOnMouseEntered(e -> {
@@ -63,6 +57,22 @@ public class LoginView extends HBox {
 		createAccountHyperLink.setOnAction(e -> {
 			controller.handleCreateAccountHyperLink(e);
 		});
+		this.setOnKeyPressed(e -> {
+			if(e.getCode() == KeyCode.ENTER) {
+				loginAction();				
+			}
+		});
+	}
+	
+	private void loginAction () {
+		try {
+			controller.handleLogin(usernameTextField.getText(), passwordPasswordField.getText());
+			errorMessageLabel.setVisible(false);
+			errorMessageLabel.setText("");
+		} catch (Exception ex) {
+			errorMessageLabel.setVisible(true);
+			errorMessageLabel.setText(ex.getMessage());
+		}
 	}
 
 	private void styleComponent() {
