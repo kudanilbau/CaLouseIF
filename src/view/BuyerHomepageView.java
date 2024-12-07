@@ -2,6 +2,7 @@ package view;
 
 import java.util.Arrays;
 
+import controller.BuyerHomepageController;
 import controller.ItemController;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -19,18 +20,19 @@ import model.Item;
 
 public class BuyerHomepageView extends BorderPane {
 	private TableView<Item> itemTable;
-	private Button purchaseButton, offerButton;
+	private Button purchaseButton, offerButton, addToWishlistButton;
 	private ObservableList<Item> itemList;
 	private TableColumn<Item, String> nameColumn, categoryColumn, sizeColumn, priceColumn;
 	private VBox mainContent;
 	private HBox actionBar;
 
 	private ItemController itemController;
+	private BuyerHomepageController buyerHomepageController;
 
-	public BuyerHomepageView(ItemController itemController) {
+	public BuyerHomepageView(ItemController itemController, BuyerHomepageController buyerHomepageController) {
 		super();
 		this.itemController = itemController;
-		itemList = itemController.BrowseItem();
+		itemList = this.itemController.BrowseItem();
 		initComponents();
 		addComponents();
 		styleComponents();
@@ -57,6 +59,7 @@ public class BuyerHomepageView extends BorderPane {
 
 		purchaseButton = new Button("Purchase");
 		offerButton = new Button("Offer");
+		addToWishlistButton = new Button ("Add To Wishlist");
 
 	}
 
@@ -85,13 +88,19 @@ public class BuyerHomepageView extends BorderPane {
 	private void setActionNode() {
 		purchaseButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-
+				buyerHomepageController.handlePurchaseButton();
 			}
 		});
 
 		offerButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-
+				buyerHomepageController.handleOfferButton();
+			}
+		});
+		
+		addToWishlistButton.setOnMouseClicked(e -> {
+			if(e.getButton() == MouseButton.PRIMARY) {
+				buyerHomepageController.handleAddToWishlist();
 			}
 		});
 	}

@@ -1,5 +1,6 @@
 package router;
 
+import controller.BuyerHomepageController;
 import controller.ItemController;
 import controller.LoginController;
 import controller.RegisterController;
@@ -8,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import view.AdminDashboardView;
 import view.BuyerHomepageView;
+import view.BuyerItemDetailsView;
 import view.BuyerNavbar;
 import view.LoginView;
 import view.RegisterView;
@@ -77,7 +79,7 @@ public class PageData {
 	 * @return the {@code Node} representing the buyer's homepage
 	 */
 	public static Node buyerHomePage() {
-		return new BuyerHomepageView(new ItemController());
+		return new BuyerHomepageView(new ItemController(), new BuyerHomepageController());
 	}
 
 	/**
@@ -86,7 +88,7 @@ public class PageData {
 	 * @return the {@code Node} representing the buyer's item details page
 	 */
 	public static Node buyerItemDetailsPage() {
-		return new BuyerHomepageView(new ItemController());
+		return new BuyerItemDetailsView();
 	}
 
 	public static Parent buyerNavbar() {

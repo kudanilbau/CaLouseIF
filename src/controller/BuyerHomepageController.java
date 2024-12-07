@@ -12,4 +12,12 @@ public class BuyerHomepageController {
 	public void handlePurchaseButton() {
 		
 	}
+	
+	public void handleOfferButton() {
+		
+	}
+	
+	public void handleAddToWishlist() {
+		
+	}
 }
