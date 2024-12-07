@@ -87,23 +87,10 @@ public class BuyerHomepageView extends BorderPane {
 	}
 
 	private void setActionNode() {
-		purchaseButton.setOnMouseClicked(e -> {
-			if (e.getButton() == MouseButton.PRIMARY) {
-				Item selectedItem = itemTable.getSelectionModel().getSelectedItem();
-				buyerHomepageController.handlePurchaseButton(item);
-				
-			}
-		});
-
-		offerButton.setOnMouseClicked(e -> {
-			if (e.getButton() == MouseButton.PRIMARY) {
-				buyerHomepageController.handleOfferButton();
-			}
-		});
-		
-		addToWishlistButton.setOnMouseClicked(e -> {
+		itemTable.setOnMouseClicked(e -> {
 			if(e.getButton() == MouseButton.PRIMARY) {
-				buyerHomepageController.handleAddToWishlist();
+				Item item = itemTable.getSelectionModel().getSelectedItem();
+				buyerHomepageController.handleItemSelection(item);
 			}
 		});
 	}

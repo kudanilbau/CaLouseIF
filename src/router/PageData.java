@@ -1,12 +1,14 @@
 package router;
 
 import controller.BuyerHomepageController;
+import controller.BuyerItemDetailsController;
 import controller.ItemController;
 import controller.LoginController;
 import controller.RegisterController;
 import controller.UserController;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import model.Item;
 import view.AdminDashboardView;
 import view.BuyerHomepageView;
 import view.BuyerItemDetailsView;
@@ -87,8 +89,8 @@ public class PageData {
 	 *
 	 * @return the {@code Node} representing the buyer's item details page
 	 */
-	public static Node buyerItemDetailsPage() {
-		return new BuyerItemDetailsView();
+	public static Node buyerItemDetailsPage(Item item) {
+		return new BuyerItemDetailsView(new BuyerItemDetailsController(), item);
 	}
 
 	public static Parent buyerNavbar() {
