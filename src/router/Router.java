@@ -96,6 +96,11 @@ public class Router {
 		appView.getContainer().setCenter(lastCenterNode);
 	}
 	
+	/**
+	 * Returns the application-wide navigation bar instance.
+	 *
+	 * @return the {@code AppNavbar} instance
+	 */
 	public static AppNavbar getAppNavBar() {
 		return appNavbar;
 	}
