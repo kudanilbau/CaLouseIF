@@ -9,7 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import view.AdminDashboardView;
 import view.BuyerHomepageView;
-import view.BuyerItemDetailsView;
+import view.BuyerItemOfferView;
 import view.BuyerNavbar;
 import view.LoginView;
 import view.RegisterView;
@@ -88,7 +88,7 @@ public class PageData {
 	 * @return the {@code Node} representing the buyer's item details page
 	 */
 	public static Node buyerItemDetailsPage() {
-		return new BuyerItemDetailsView();
+		return new BuyerItemOfferView();
 	}
 
 	public static Parent buyerNavbar() {

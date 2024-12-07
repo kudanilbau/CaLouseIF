@@ -6,11 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class BuyerItemDetailsView extends VBox{
+public class BuyerItemOfferView extends VBox{
     private Label nameLabel, categoryLabel, sizeLabel, priceLabel;
     private Button wishlistButton, purchaseButton, offerButton;
 
-    public BuyerItemDetailsView() {
+    public BuyerItemOfferView() {
 		super();
         initComponents();
         addComponents();
