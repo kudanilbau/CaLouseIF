@@ -7,7 +7,7 @@ public class BuyerItemDetailsController {
 		
 	}
 	
-	public void handleOfferButton(Item item) {
+	public void handleOfferButton(Item item, String offer) {
 		
 	}
 	
