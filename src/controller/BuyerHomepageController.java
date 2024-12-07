@@ -1,6 +1,5 @@
 package controller;
 
-import router.PageData;
 import router.Router;
 
 public class BuyerHomepageController {
@@ -10,19 +9,7 @@ public class BuyerHomepageController {
 		router = Router.getInstance();
 	}
 	
-	public void handleWishlistButton() {
-		
-	}
-	
-	public void handlePurchaseHistoryButton() {
-		
-	}
-	
 	public void handlePurchaseButton() {
 		
-	}
-	
-	public void handleHomepageButton() {
-		router.navigateTo(PageData.buyerHomePage());
 	}
 }
