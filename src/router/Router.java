@@ -22,7 +22,7 @@ public class Router {
 		appView = new AppView(stage);
 		viewStack = new Stack<>();
 	}
-	
+
 	/**
 	 * Initializes the {@code Router} instance with the specified stage.
 	 *
@@ -55,11 +55,16 @@ public class Router {
 	 */
 	public void navigateTo(Node node, String title) {
 		Node centerNode = appView.getContainer().getCenter();
+//		check if the page navigate into is the same
+		if (!viewStack.isEmpty() && viewStack.peek().getClass().equals(node.getClass())) {
+			return;
+		}
+
 		if (centerNode != null) {
 			viewStack.add(centerNode);
 		}
 //		if navigating to login or register, disable navbar and clear custom component. else enable navbar
-		if(node.getClass().equals(LoginView.class) || node.getClass().equals(RegisterView.class)) {
+		if (node.getClass().equals(LoginView.class) || node.getClass().equals(RegisterView.class)) {
 			appView.setTop(null);
 			appNavbar.clearComponent();
 			viewStack.clear();
@@ -89,13 +94,13 @@ public class Router {
 		}
 		Node lastCenterNode = viewStack.pop();
 //		Can't go back to login page
-		if(lastCenterNode.getClass().equals(LoginView.class) || lastCenterNode.getClass().equals(RegisterView.class)) {
+		if (lastCenterNode.getClass().equals(LoginView.class) || lastCenterNode.getClass().equals(RegisterView.class)) {
 			viewStack.clear();
 			return;
 		}
 		appView.getContainer().setCenter(lastCenterNode);
 	}
-	
+
 	/**
 	 * Returns the application-wide navigation bar instance.
 	 *
@@ -103,5 +108,10 @@ public class Router {
 	 */
 	public static AppNavbar getAppNavBar() {
 		return appNavbar;
+	}
+
+	public void setCustomNavbar(Node customNavbar) {
+		appNavbar.insertComponent(customNavbar);
+
 	}
 }

@@ -5,8 +5,10 @@ import controller.LoginController;
 import controller.RegisterController;
 import controller.UserController;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import view.AdminDashboardView;
 import view.BuyerHomepageView;
+import view.BuyerNavbar;
 import view.LoginView;
 import view.RegisterView;
 import view.SellerEditView;
@@ -59,31 +61,35 @@ public class PageData {
 	public static Node sellerEditPage() {
 		return new SellerEditView();
 	}
-	
-    /**
-     * Returns the {@code Node} for the admin dashboard page.
-     *
-     * @return the {@code Node} representing the admin dashboard page
-     */
+
+	/**
+	 * Returns the {@code Node} for the admin dashboard page.
+	 *
+	 * @return the {@code Node} representing the admin dashboard page
+	 */
 	public static Node adminDashboardPage() {
 		return new AdminDashboardView();
 	}
-	
-    /**
-     * Returns the {@code Node} for the buyer's homepage.
-     *
-     * @return the {@code Node} representing the buyer's homepage
-     */
+
+	/**
+	 * Returns the {@code Node} for the buyer's homepage.
+	 *
+	 * @return the {@code Node} representing the buyer's homepage
+	 */
 	public static Node buyerHomePage() {
 		return new BuyerHomepageView(new ItemController());
 	}
-	
-    /**
-     * Returns the {@code Node} for the item details page for a buyer.
-     *
-     * @return the {@code Node} representing the buyer's item details page
-     */
+
+	/**
+	 * Returns the {@code Node} for the item details page for a buyer.
+	 *
+	 * @return the {@code Node} representing the buyer's item details page
+	 */
 	public static Node buyerItemDetailsPage() {
 		return new BuyerHomepageView(new ItemController());
+	}
+
+	public static Parent buyerNavbar() {
+		return new BuyerNavbar();
 	}
 }

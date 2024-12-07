@@ -16,11 +16,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import model.Item;
-import router.Router;
 
 public class BuyerHomepageView extends BorderPane {
 	private TableView<Item> itemTable;
-	private Button wishlistButton, purchaseHistoryButton, homepageButton, purchaseButton, offerButton;
+	private Button purchaseButton, offerButton;
 	private ObservableList<Item> itemList;
 	private TableColumn<Item, String> nameColumn, categoryColumn, sizeColumn, priceColumn;
 	private VBox mainContent;
@@ -36,7 +35,6 @@ public class BuyerHomepageView extends BorderPane {
 		addComponents();
 		styleComponents();
 		setActionNode();
-		addNavbar();
 	}
 
 	private void initComponents() {
@@ -45,34 +43,30 @@ public class BuyerHomepageView extends BorderPane {
 		categoryColumn = new TableColumn<>("Category");
 		sizeColumn = new TableColumn<>("Size");
 		priceColumn = new TableColumn<>("Price");
-		
+
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("item_name"));
 		categoryColumn.setCellValueFactory(new PropertyValueFactory<>("item_category"));
 		sizeColumn.setCellValueFactory(new PropertyValueFactory<>("item_size"));
 		priceColumn.setCellValueFactory(new PropertyValueFactory<>("item_price"));
-		
+
 		itemTable.getColumns().addAll(Arrays.asList(nameColumn, categoryColumn, sizeColumn, priceColumn));
 		itemTable.setItems(itemList);
 
-		wishlistButton = new Button("Wishlist");
-		purchaseHistoryButton = new Button("Purchase History");
-		homepageButton = new Button("Homepage");
-		
 		mainContent = new VBox();
 		actionBar = new HBox(10);
-		
+
 		purchaseButton = new Button("Purchase");
 		offerButton = new Button("Offer");
-		
+
 	}
 
 	private void addComponents() {
 		mainContent.getChildren().add(itemTable);
-		
+
 		actionBar.getChildren().addAll(purchaseButton, offerButton);
 		actionBar.setAlignment(Pos.CENTER);
 		actionBar.setPadding(new Insets(10));
-		
+
 		this.setCenter(mainContent);
 		this.setBottom(actionBar);
 	}
@@ -89,40 +83,16 @@ public class BuyerHomepageView extends BorderPane {
 	}
 
 	private void setActionNode() {
-		wishlistButton.setOnMouseClicked(e -> {
-			if (e.getButton() == MouseButton.PRIMARY) {
-
-			}
-		});
-
-		purchaseHistoryButton.setOnMouseClicked(e -> {
-			if (e.getButton() == MouseButton.PRIMARY) {
-
-			}
-		});
-
-		homepageButton.setOnMouseClicked(e -> {
-			if (e.getButton() == MouseButton.PRIMARY) {
-				
-			}
-		});
-		
 		purchaseButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				
+
 			}
 		});
-		
+
 		offerButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				
+
 			}
 		});
-	}
-
-	private void addNavbar() {
-		Router.getAppNavBar().insertComponent(purchaseHistoryButton);
-		Router.getAppNavBar().insertComponent(wishlistButton);
-		Router.getAppNavBar().insertComponent(homepageButton);
 	}
 }

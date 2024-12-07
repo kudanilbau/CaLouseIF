@@ -31,7 +31,7 @@ public class AppNavbar extends HBox {
 	 */
 	private void defaultComponent() {
 		HBox defaultComponentContainer = new HBox(15);
-		customComponentContainer = new HBox(15);
+		customComponentContainer = new HBox();
 
 		Button backButton = new Button("Back");
 		Button logoutButton = new Button("Logout");
@@ -54,7 +54,7 @@ public class AppNavbar extends HBox {
 				router.navigateTo(PageData.loginPage());
 			}
 		});
-		
+
 //		((HBox)(this.getChildren().get(0))).getChildren().clear();
 	}
 
@@ -71,7 +71,7 @@ public class AppNavbar extends HBox {
 	public void insertComponent(Node node) {
 		customComponentContainer.getChildren().add(0, node);
 	}
-	
+
 	public void clearComponent() {
 		customComponentContainer.getChildren().clear();
 	}
