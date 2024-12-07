@@ -71,9 +71,11 @@ public class BuyerHomepageView extends BorderPane {
 
 	private void setActionNode() {
 		itemTable.setOnMouseClicked(e -> {
-			if(e.getButton() == MouseButton.PRIMARY) {
+			if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
 				Item item = itemTable.getSelectionModel().getSelectedItem();
-				buyerHomepageController.handleItemSelection(item);
+				if (item != null) {
+					buyerHomepageController.handleItemSelection(item);
+				}
 			}
 		});
 	}
