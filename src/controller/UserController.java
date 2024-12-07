@@ -47,6 +47,7 @@ public class UserController {
      */
 	public User Register(String Username, String Password, String Phone_Number, String Address, String Role)
 			throws Exception {
+		CheckAccountValidation(Username, Password, Phone_Number, Address, Role);
 		return User.Register(Username, Password, Phone_Number, Address, Role);
 	}
 	

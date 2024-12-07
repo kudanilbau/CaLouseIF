@@ -159,8 +159,6 @@ public class User {
 	 */
 	public static User Register(String Username, String Password, String Phone_Number, String Address, String Role)
 			throws Exception {
-		CheckAccountValidation(Username, Password, Phone_Number, Address, Role);
-		
 		UserRepository userRepository = new UserRepository();
 		User user = userRepository.createUser(Username, Password, Phone_Number, Address, Role);
 		return user;
