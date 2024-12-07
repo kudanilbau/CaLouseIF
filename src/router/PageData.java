@@ -6,6 +6,7 @@ import controller.ItemController;
 import controller.LoginController;
 import controller.RegisterController;
 import controller.UserController;
+import controller.WishlistController;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import model.Item;
@@ -90,7 +91,7 @@ public class PageData {
 	 * @return the {@code Node} representing the buyer's item details page
 	 */
 	public static Node buyerItemDetailsPage(Item item) {
-		return new BuyerItemDetailsView(new BuyerItemDetailsController(new ItemController()), item);
+		return new BuyerItemDetailsView(new BuyerItemDetailsController(new ItemController(), new WishlistController()), item);
 	}
 
 	public static Parent buyerNavbar() {

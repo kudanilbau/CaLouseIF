@@ -93,7 +93,6 @@ public class BuyerItemDetailsView extends VBox {
 		purchaseButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
 				buyerItemDetailsController.handlePurchaseButton(item);
-
 			}
 		});
 

@@ -1,5 +1,7 @@
 package model;
 
+import repository.WishlistRepository;
+
 public class Wishlist {
 	private String Whislist_id;
 	private String Item_id;
@@ -28,13 +30,15 @@ public class Wishlist {
 	public void setUser_id(String user_id) {
 		User_id = user_id;
 	}
-	public void ViewWishlist(String Wishlist_id, String User_id) {
+	public static void ViewWishlist(String Wishlist_id, String User_id) {
 		throw new UnsupportedOperationException();
 	}
-	public void AddWishlist(String item_id, String User_id) {
-		throw new UnsupportedOperationException();
+	public static void AddWishlist(String item_id, String User_id) {
+		WishlistRepository wishlistRepository = new WishlistRepository();
+		wishlistRepository.createWishlist(item_id, User_id);
+		
 	}
-	public void RemoveWishlist(String Wishlist_id) {
+	public static void RemoveWishlist(String Wishlist_id) {
 		throw new UnsupportedOperationException();
 	}
 	
