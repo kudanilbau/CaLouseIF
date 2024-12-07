@@ -32,6 +32,7 @@ public class BuyerHomepageView extends BorderPane {
 	public BuyerHomepageView(ItemController itemController, BuyerHomepageController buyerHomepageController) {
 		super();
 		this.itemController = itemController;
+		this.buyerHomepageController = buyerHomepageController;
 		itemList = this.itemController.BrowseItem();
 		initComponents();
 		addComponents();
@@ -66,7 +67,7 @@ public class BuyerHomepageView extends BorderPane {
 	private void addComponents() {
 		mainContent.getChildren().add(itemTable);
 
-		actionBar.getChildren().addAll(purchaseButton, offerButton);
+		actionBar.getChildren().addAll(purchaseButton, offerButton, addToWishlistButton);
 		actionBar.setAlignment(Pos.CENTER);
 		actionBar.setPadding(new Insets(10));
 
@@ -88,7 +89,9 @@ public class BuyerHomepageView extends BorderPane {
 	private void setActionNode() {
 		purchaseButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				buyerHomepageController.handlePurchaseButton();
+				Item selectedItem = itemTable.getSelectionModel().getSelectedItem();
+				buyerHomepageController.handlePurchaseButton(item);
+				
 			}
 		});
 

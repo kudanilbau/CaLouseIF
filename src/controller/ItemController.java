@@ -15,11 +15,10 @@ public class ItemController {
 	public void DeleteItem(String Item_id) {
 		throw new UnsupportedOperationException();
 	}
-//	Asumsi sementara ini ndapetin semua data dari database
 	public ObservableList<Item> BrowseItem() {
 		return Item.BrowseItem();
 	}
-//	Asumsi sementara ini ngeliat salah satu item yang ada
+	
 	public void VIewItem(String Item_name) {
 		throw new UnsupportedOperationException();
 	}
