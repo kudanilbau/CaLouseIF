@@ -81,7 +81,7 @@ public class PageData {
 	 * @return the {@code Node} representing the buyer's homepage
 	 */
 	public static Node buyerHomePage() {
-		return new BuyerHomepageView(new ItemController(), new BuyerHomepageController());
+		return new BuyerHomepageView(new BuyerHomepageController(new ItemController()));
 	}
 
 	/**

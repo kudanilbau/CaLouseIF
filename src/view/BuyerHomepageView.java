@@ -3,7 +3,6 @@ package view;
 import java.util.Arrays;
 
 import controller.BuyerHomepageController;
-import controller.ItemController;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -20,14 +19,12 @@ public class BuyerHomepageView extends BorderPane {
 	private TableColumn<Item, String> nameColumn, categoryColumn, sizeColumn, priceColumn;
 	private VBox mainContent;
 
-	private ItemController itemController;
 	private BuyerHomepageController buyerHomepageController;
 
-	public BuyerHomepageView(ItemController itemController, BuyerHomepageController buyerHomepageController) {
+	public BuyerHomepageView(BuyerHomepageController buyerHomepageController) {
 		super();
-		this.itemController = itemController;
 		this.buyerHomepageController = buyerHomepageController;
-		itemList = this.itemController.BrowseItem();
+		itemList = buyerHomepageController.getAllItem();
 		initComponents();
 		addComponents();
 		styleComponents();

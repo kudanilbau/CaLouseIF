@@ -10,11 +10,11 @@ import model.Item;
 
 public class ItemRepository {
 	private DatabaseConnector db;
-	private ObservableList<Item> itemList;
+//	to make table updateable
+	private static ObservableList<Item> itemList;
 
 	public ItemRepository() {
 		db = DatabaseConnector.getInstance();
-		 itemList = FXCollections.observableArrayList();
 	}
 
 	public ObservableList<Item> getAllItem() {
@@ -71,6 +71,16 @@ public class ItemRepository {
 			pstmt.setString(1, offer);
 			pstmt.setString(2, item_id);
 			pstmt.executeUpdate();
+	        // After updating, fetch the updated list of items
+	        Item updatedItem = getItemById(item_id);
+	        
+	        // Update the specific item in the list
+	        for (int i = 0; i < itemList.size(); i++) {
+	            if (itemList.get(i).getItem_id().equals(updatedItem.getItem_id())) {
+	                itemList.set(i, updatedItem);
+	                break;
+	            }
+	        }
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
