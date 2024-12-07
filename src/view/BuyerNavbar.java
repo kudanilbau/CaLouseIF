@@ -3,6 +3,7 @@ package view;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
+import router.PageData;
 import router.Router;
 
 public class BuyerNavbar extends HBox {
@@ -36,19 +37,20 @@ public class BuyerNavbar extends HBox {
 	private void setActionComponent() {
 		wishlistButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				router.navigateTo(homepageButton);
+				router.navigateTo(PageData.buyerHomePage());
 			}
 		});
 
 		purchaseHistoryButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				router.navigateTo(homepageButton);
+//				router.navigateTo(PageData.buyerHomePage());
+				router.navigateTo(PageData.loginPage());
 			}
 		});
 
 		homepageButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				router.navigateTo(homepageButton);
+				router.navigateTo(PageData.buyerHomePage());
 			}
 		});
 	}

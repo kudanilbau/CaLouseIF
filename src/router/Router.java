@@ -56,12 +56,13 @@ public class Router {
 	public void navigateTo(Node node, String title) {
 		Node centerNode = appView.getContainer().getCenter();
 //		check if the page navigate into is the same
-		if (!viewStack.isEmpty() && viewStack.peek().getClass().equals(node.getClass())) {
-			return;
-		}
 
 		if (centerNode != null) {
 			viewStack.add(centerNode);
+		}
+		
+		if (!viewStack.isEmpty() && viewStack.peek().getClass().equals(node.getClass())) {
+			return;
 		}
 //		if navigating to login or register, disable navbar and clear custom component. else enable navbar
 		if (node.getClass().equals(LoginView.class) || node.getClass().equals(RegisterView.class)) {
