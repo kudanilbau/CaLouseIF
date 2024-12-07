@@ -1,3 +1,5 @@
+USE calouseif;
+
 INSERT INTO `user` (`User_id`, `Username`, `Password`, `Phone_Number`, `Address`, `Role`) VALUES
 ('55923e3a-5781-42a4-858c-309605badaf3', 'Buyer', 'y0Sc9AK35Fck9ZMv022erg==', '+62123456789', 'Binus', 'buyer'),
 ('68406ea2-f7ad-4808-bf68-6573629be257', 'admin', 'qLRywyE0xJuJn1MzXynPug==', '+62123456789', 'Binus', 'admin'),
