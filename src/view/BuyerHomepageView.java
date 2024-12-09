@@ -77,7 +77,7 @@ public class BuyerHomepageView extends BorderPane {
 		sizeColumn.prefWidthProperty().bind(itemTable.widthProperty().multiply(0.1));
 		priceColumn.prefWidthProperty().bind(itemTable.widthProperty().multiply(0.1));
 		
-		actionBarTopHBox.setPadding(new Insets(10));
+		actionBarTopHBox.setPadding(new Insets(0, 15, 15, 15));
 	}
 
 	private void setActionNode() {

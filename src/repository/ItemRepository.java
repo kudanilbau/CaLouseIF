@@ -17,12 +17,12 @@ public class ItemRepository {
 		db = DatabaseConnector.getInstance();
 	}
 
-	public ObservableList<Item> getAllItem() {
+	public ObservableList<Item> getAllApprovedItem() {
 		if(itemList == null) {
 			itemList = FXCollections.observableArrayList();			
 		}
 		itemList.clear();
-		String query = "SELECT * FROM item WHERE item_status='approved'";
+		String query = "SELECT * FROM item WHERE item_status LIKE 'approved%'";
 		try (PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {

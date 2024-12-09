@@ -105,7 +105,7 @@ public class Item {
 
 	public static ObservableList<Item> BrowseItem() {
 		ItemRepository itemRepository = new ItemRepository();
-		return itemRepository.getAllItem();
+		return itemRepository.getAllApprovedItem();
 	}
 
 	public void VIewItem(String Item_name) {
