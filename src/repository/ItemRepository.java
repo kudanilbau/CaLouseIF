@@ -18,7 +18,10 @@ public class ItemRepository {
 	}
 
 	public ObservableList<Item> getAllItem() {
-		itemList = FXCollections.observableArrayList();
+		if(itemList == null) {
+			itemList = FXCollections.observableArrayList();			
+		}
+		itemList.clear();
 		String query = "SELECT * FROM item WHERE item_status='approved'";
 		try (PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			ResultSet rs = pstmt.executeQuery();

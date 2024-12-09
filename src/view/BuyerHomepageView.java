@@ -4,11 +4,14 @@ import java.util.Arrays;
 
 import controller.BuyerHomepageController;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import model.Item;
@@ -18,6 +21,8 @@ public class BuyerHomepageView extends BorderPane {
 	private ObservableList<Item> itemList;
 	private TableColumn<Item, String> nameColumn, categoryColumn, sizeColumn, priceColumn;
 	private VBox mainContent;
+	private HBox actionBarTopHBox;
+	private Button refreshTableButton;
 
 	private BuyerHomepageController buyerHomepageController;
 
@@ -47,12 +52,19 @@ public class BuyerHomepageView extends BorderPane {
 		itemTable.setItems(itemList);
 
 		mainContent = new VBox();
+		
+		actionBarTopHBox = new HBox(15);
+		
+		refreshTableButton = new Button("Refresh Table");
 
 	}
 
 	private void addComponents() {
 		mainContent.getChildren().add(itemTable);
+		actionBarTopHBox.getChildren().add(refreshTableButton);
+		
 		this.setCenter(mainContent);
+		this.setTop(actionBarTopHBox);
 	}
 
 	private void styleComponents() {
@@ -64,6 +76,8 @@ public class BuyerHomepageView extends BorderPane {
 		categoryColumn.prefWidthProperty().bind(itemTable.widthProperty().multiply(0.387));
 		sizeColumn.prefWidthProperty().bind(itemTable.widthProperty().multiply(0.1));
 		priceColumn.prefWidthProperty().bind(itemTable.widthProperty().multiply(0.1));
+		
+		actionBarTopHBox.setPadding(new Insets(10));
 	}
 
 	private void setActionNode() {
@@ -73,6 +87,12 @@ public class BuyerHomepageView extends BorderPane {
 				if (item != null) {
 					buyerHomepageController.handleItemSelection(item);
 				}
+			}
+		});
+		
+		refreshTableButton.setOnMouseClicked(e -> {
+			if(e.getButton() == MouseButton.PRIMARY) {
+				itemList = buyerHomepageController.getAllItem();
 			}
 		});
 	}
