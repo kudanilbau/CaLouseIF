@@ -29,11 +29,12 @@ public class ItemRepository {
 		itemList.clear();
 		String query = "SELECT * FROM item WHERE item_status LIKE 'approved%'";
 		try (PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Item item = new Item(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
-				itemList.add(item);
+			try(ResultSet rs = pstmt.executeQuery()){				
+				while (rs.next()) {
+					Item item = new Item(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+					itemList.add(item);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,10 +53,11 @@ public class ItemRepository {
 		String query = "SELECT * FROM item WHERE Item_id = ?";
 		try (PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			pstmt.setString(1, item_id);
-			ResultSet rs = pstmt.executeQuery();
-			if(rs.next()) {
-				item = new Item(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));				
+			try(ResultSet rs = pstmt.executeQuery()){
+				if(rs.next()) {
+					item = new Item(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));				
+				}
 			}
 			
 		} catch (SQLException e) {
@@ -75,9 +77,10 @@ public class ItemRepository {
 		String query = "SELECT * FROM item WHERE item_name = ?";
 		try (PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			pstmt.setString(1, item_name);
-			ResultSet rs = pstmt.executeQuery();
-			item = new Item(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-					rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+			try(ResultSet rs = pstmt.executeQuery()){
+				item = new Item(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));				
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

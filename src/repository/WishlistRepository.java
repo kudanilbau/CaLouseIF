@@ -49,10 +49,11 @@ public class WishlistRepository {
 		wishlistList.clear();
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			pstmt.setString(1, user_id);
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				Wishlist wishlist = new Wishlist(rs.getString("Wishlist_id"), rs.getString("Item_id"), rs.getString("User_id"));
-				wishlistList.add(wishlist);
+			try(ResultSet rs = pstmt.executeQuery()){				
+				while(rs.next()) {
+					Wishlist wishlist = new Wishlist(rs.getString("Wishlist_id"), rs.getString("Item_id"), rs.getString("User_id"));
+					wishlistList.add(wishlist);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
