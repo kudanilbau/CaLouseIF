@@ -17,6 +17,11 @@ public class ItemRepository {
 		db = DatabaseConnector.getInstance();
 	}
 
+    /**
+     * Retrieves all items with an "approved" status from the database.
+     *
+     * @return an {@code ObservableList} of approved {@code Item} objects.
+     */
 	public ObservableList<Item> getAllApprovedItem() {
 		if(itemList == null) {
 			itemList = FXCollections.observableArrayList();			
@@ -36,6 +41,12 @@ public class ItemRepository {
 		return itemList;
 	}
 
+    /**
+     * Retrieves an {@code Item} object from the database using its ID.
+     *
+     * @param item_id the unique identifier of the item to retrieve.
+     * @return an {@code Item} object if found, or {@code null} otherwise.
+     */
 	public Item getItemById(String item_id) {
 		Item item = null;
 		String query = "SELECT * FROM item WHERE Item_id = ?";
@@ -53,6 +64,12 @@ public class ItemRepository {
 		return item;
 	}
 
+    /**
+     * Retrieves an {@code Item} object from the database using its name.
+     *
+     * @param item_name the name of the item to retrieve.
+     * @return an {@code Item} object if found, or {@code null} otherwise.
+     */
 	public Item getItemByName(String item_name) {
 		Item item = null;
 		String query = "SELECT * FROM item WHERE item_name = ?";
@@ -68,6 +85,12 @@ public class ItemRepository {
 
 	}
 
+    /**
+     * Updates the offer status of an item in the database.
+     *
+     * @param item_id the unique identifier of the item to update.
+     * @param offer   the new offer status to set.
+     */
 	public void updateOfferItem(String item_id, String offer) {
 		String query = "UPDATE item SET item_offer_status = ? WHERE item_id = ?";
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)){

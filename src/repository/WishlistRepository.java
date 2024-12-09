@@ -17,6 +17,12 @@ public class WishlistRepository {
 		db = DatabaseConnector.getInstance();
 	}
 	
+    /**
+     * Adds a new wishlist entry to the database.
+     *
+     * @param item_id the ID of the item
+     * @param user_id the ID of the user
+     */
 	public void createWishlist(String item_id, String user_id) {
 		String query = "INSERT INTO wishlist VALUES(?, ?, ?)";
 		try (PreparedStatement pstmt = db.getConnection().prepareStatement(query)){
@@ -29,9 +35,18 @@ public class WishlistRepository {
 		}
 	}
 	
+    /**
+     * Retrieves all wishlist entries for a specific user.
+     *
+     * @param user_id the ID of the user
+     * @return an observable list of wishlist items for the user
+     */
 	public ObservableList<Wishlist> getWishlistByUserId(String user_id) {
 		String query = "SELECT * FROM wishlist WHERE User_id = ?";
-		wishlistList = FXCollections.observableArrayList();
+		if(wishlistList == null) {
+			wishlistList = FXCollections.observableArrayList();			
+		}
+		wishlistList.clear();
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			pstmt.setString(1, user_id);
 			ResultSet rs = pstmt.executeQuery();
@@ -45,6 +60,11 @@ public class WishlistRepository {
 		return wishlistList;
 	}
 	
+   /**
+     * Removes a wishlist entry by its ID.
+     *
+     * @param wishlist_id the ID of the wishlist to remove
+     */
 	public void removeWishlistById(String wishlist_id){
 		String query = "DELETE FROM wishlist WHERE Wishlist_id = ?";
 		

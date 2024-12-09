@@ -103,6 +103,14 @@ public class Item {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Retrieves all approved items available for browsing.
+	 * 
+	 * This method fetches a list of all items that have been approved and are available for browsing 
+	 * by users. The list is returned as an ObservableList of Item objects.
+	 * 
+	 * @return An ObservableList of approved Item objects.
+	 */
 	public static ObservableList<Item> BrowseItem() {
 		ItemRepository itemRepository = new ItemRepository();
 		return itemRepository.getAllApprovedItem();
@@ -120,6 +128,18 @@ public class Item {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Submits a new offer price for an item.
+	 * 
+	 * This method allows a user to submit a new offer price for an item. It checks if the new offer 
+	 * is higher than the previous offer price. If not, it throws an IllegalArgumentException. 
+	 * The offer details (price and user ID) are then stored in the item repository.
+	 * 
+	 * @param Item_id The ID of the item for which the offer is being made.
+	 * @param item_price The new offer price for the item.
+	 * 
+	 * @throws IllegalArgumentException If the new offer price is less than or equal to the previous offer price.
+	 */
 	public static void OfferPrice(String Item_id, String item_price) throws IllegalArgumentException{
 		ItemRepository itemRepository = new ItemRepository();
 		Item item = itemRepository.getItemById(Item_id);

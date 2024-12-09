@@ -16,6 +16,11 @@ public class ItemController {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+     * Retrieves a list of all available approved items.
+     *
+     * @return an {@code ObservableList<Item>} containing all available approved items
+     */
 	public ObservableList<Item> BrowseItem() {
 		return Item.BrowseItem();
 	}
@@ -32,6 +37,18 @@ public class ItemController {
 		throw new UnsupportedOperationException();
 	}
 
+    /**
+     * Submits an offer for the specified item.
+     * <p>
+     * This method validates the offer price and, if valid, delegates the operation
+     * to the {@code Item} model for processing.
+     * </p>
+     *
+     * @param Item_id   the unique identifier of the item
+     * @param item_price the offered price for the item, as a {@code String}
+     * @throws IllegalArgumentException if the offer price is empty, less than 1,
+     *                                  or not a valid numeric value
+     */
 	public void OfferPrice(String Item_id, String item_price) throws IllegalArgumentException{
 		if(item_price.isEmpty()) {
 			throw new IllegalArgumentException("Offer cannot be empty");

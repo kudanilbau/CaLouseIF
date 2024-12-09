@@ -16,6 +16,14 @@ public class UserRepository {
 		db = DatabaseConnector.getInstance();
 	}
 
+	/**
+	 * Retrieves a {@code User} object based on the provided user id
+	 *
+	 * @param userId the ID of the user
+	 * @return a {@code User} object representing the user with the matching
+	 *         id
+	 * @see User
+	 */
 	public User getUserById(String userId) {
 		User user = null;
 		Connection con = db.getConnection();

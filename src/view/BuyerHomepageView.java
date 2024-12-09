@@ -29,7 +29,7 @@ public class BuyerHomepageView extends BorderPane {
 	public BuyerHomepageView(BuyerHomepageController buyerHomepageController) {
 		super();
 		this.buyerHomepageController = buyerHomepageController;
-		itemList = buyerHomepageController.getAllItem();
+		itemList = buyerHomepageController.getAllApprovedItem();
 		initComponents();
 		addComponents();
 		styleComponents();
@@ -92,7 +92,7 @@ public class BuyerHomepageView extends BorderPane {
 		
 		refreshTableButton.setOnMouseClicked(e -> {
 			if(e.getButton() == MouseButton.PRIMARY) {
-				itemList = buyerHomepageController.getAllItem();
+				itemList = buyerHomepageController.getAllApprovedItem();
 			}
 		});
 	}

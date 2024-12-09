@@ -94,6 +94,11 @@ public class PageData {
 		return new BuyerItemDetailsView(new BuyerItemDetailsController(new ItemController(), new WishlistController()), item);
 	}
 
+	/**
+	 * Creates and returns the navigation bar for buyers.
+	 *
+	 * @return a {@code Parent} node representing the buyer's navigation bar
+	 */
 	public static Parent buyerNavbar() {
 		return new BuyerNavbar();
 	}

@@ -33,6 +33,16 @@ public class Wishlist {
 	public static void ViewWishlist(String Wishlist_id, String User_id) {
 		throw new UnsupportedOperationException();
 	}
+	
+	/**
+	 * Adds an item to the user's wishlist.
+	 * <p>
+	 * This method creates a new wishlist entry for the specified item and user. It interacts with the 
+	 * WishlistRepository to store the item in the wishlist.
+	 * </p>
+	 * @param item_id The ID of the item to be added to the wishlist.
+	 * @param User_id The ID of the user who is adding the item to their wishlist.
+	 */
 	public static void AddWishlist(String item_id, String User_id) {
 		WishlistRepository wishlistRepository = new WishlistRepository();
 		wishlistRepository.createWishlist(item_id, User_id);
