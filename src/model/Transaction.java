@@ -1,5 +1,8 @@
 package model;
 
+import javafx.collections.ObservableList;
+import repository.TransactionRepository;
+
 public class Transaction {
 	private String User_id;
 	private String Item_id;
@@ -36,16 +39,19 @@ public class Transaction {
 		this.transaction_id = transaction_id;
 	}
 
-	public void PurchaseItems(String User_id, String Item_id) {
-		throw new UnsupportedOperationException();
+	public static Transaction PurchaseItems(String User_id, String Item_id) {
+		TransactionRepository transactionRepository = new TransactionRepository();
+		return transactionRepository.createPurchaseOrder(User_id, Item_id);
 	}
 
-	public void ViewHistory(String user_id) {
-		throw new UnsupportedOperationException();
+	public static ObservableList<Transaction> ViewHistory(String user_id) {
+		TransactionRepository transactionRepository = new TransactionRepository();
+		return transactionRepository.getTransactionHistory(user_id);
 	}
 
-	public void CreateTransaction(String Transaction_id) {
-		throw new UnsupportedOperationException();
+	public static Transaction CreateTransaction(String Transaction_id) {
+		TransactionRepository transactionRepository = new TransactionRepository();
+		return transactionRepository.getTransactionById(Transaction_id);
 	}
 
 }

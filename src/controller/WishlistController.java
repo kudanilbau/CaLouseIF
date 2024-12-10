@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.collections.ObservableList;
 import model.Wishlist;
 
 public class WishlistController {
@@ -10,9 +11,11 @@ public class WishlistController {
      * 
      * @param Wishlist_id The ID of the wishlist to be viewed.
      * @param User_id The ID of the user whose wishlist is being viewed.
+     * 
+     * @return an {@code ObservableList<Item>} containing all user's wishlist
      */
-	public void ViewWishlist(String Wishlist_id, String User_id) {
-		Wishlist.ViewWishlist(Wishlist_id, User_id);
+	public ObservableList<Wishlist> ViewWishlist(String User_id) {
+		Wishlist.ViewWishlist(User_id);
 	}
 	
     /**

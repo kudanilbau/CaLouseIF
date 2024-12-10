@@ -2,7 +2,6 @@ package model;
 
 import javafx.collections.ObservableList;
 import repository.ItemRepository;
-import repository.TransactionRepository;
 import session.UserSession;
 
 public class Item {
@@ -288,7 +287,6 @@ public class Item {
 	 */
 	public static void AcceptOffer(String Item_id, String item_status_offer) {
 		ItemRepository itemRepository = new ItemRepository();
-		TransactionRepository transactionRepository = new TransactionRepository();
 		String[] itemStatus = item_status_offer.split(",");
 //		return if there's isn't an offer
 		if (!itemStatus[0].equals("offer")) {
@@ -299,11 +297,10 @@ public class Item {
 
 		itemRepository.updateAcceptOffer(Item_id, offerPrice);
 
-		transactionRepository.createPurchaseOrder(buyerId, Item_id);
-
+		Transaction.PurchaseItems(buyerId, Item_id);
 //		Get current user (should be the current seller)
 		User user = UserSession.getInstance().getUser();
-//		update table
+//		update table because the item should disappear from table
 		itemRepository.getAllOfferItem(user.getUser_id());
 
 	}
