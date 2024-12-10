@@ -2,15 +2,6 @@ package controller;
 
 import model.User;
 
-/**
- * Controller class responsible for handling user authentication and registration logic.
- * <p>
- * The {@code UserController} class acts as an intermediary between the user interface 
- * and the user-related functionality. It provides methods to log in, register a new 
- * user, and validate account details. The controller delegates the core logic to 
- * the {@code User} class methods and throws exceptions when necessary.
- * </p>
- */
 public class UserController {
     /**
      * Login a user by validating their username and password.

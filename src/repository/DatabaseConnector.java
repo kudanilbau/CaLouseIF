@@ -3,16 +3,6 @@ package repository;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-/**
- * Provides a singleton connection to the database.
- * <p>
- * The {@code DatabaseConnector} class is designed to manage a single connection
- * to a MySQL database. It uses the Singleton pattern to ensure that only one
- * instance of the connection is created throughout the application's lifecycle.
- * This class initializes the database connection when it is first requested and
- * provides access to the {@code Connection} object.
- * </p>
- */
 public class DatabaseConnector {
 
 	private static final String HOST = "localhost";

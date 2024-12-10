@@ -123,6 +123,19 @@ public class ItemRepository {
 		}
 	}
 
+	/**
+	 * Creates a new item record in the database.
+	 * 
+	 * This method generates a new item with a unique ID and sets its initial status to "waiting."
+	 * The item is then added to the database.
+	 * 
+	 * @param Item_seller_id The ID of the seller creating the item.
+	 * @param Item_name The name of the item.
+	 * @param Item_category The category of the item.
+	 * @param Item_size The size of the item.
+	 * @param Item_price The price of the item.
+	 * @return A {@code Item} object representing the newly created item, or {@code null} if an error occurs.
+	 */
 	public Item createNewItem(String Item_seller_id, String Item_name, String Item_category, String Item_size, String Item_price) {
 		String query = "INSERT INTO item(Item_id, Item_seller_id, Item_name, Item_size, Item_price, Item_category, Item_status, Item_wishlist, Item_offer_status) VALUES(?,?,?,?,?,?,?,?,?)";
 		Item item = new Item(UUID.randomUUID().toString(), Item_seller_id, Item_name, Item_size, Item_price, Item_category, "waiting", "0", "no_offer");
@@ -144,6 +157,15 @@ public class ItemRepository {
 		return item;
 	}
 	
+	/**
+	 * Updates an existing item's details in the database.
+	 * 
+	 * @param Item_id The ID of the item to update.
+	 * @param Item_name The updated name of the item.
+	 * @param Item_category The updated category of the item.
+	 * @param Item_size The updated size of the item.
+	 * @param Item_price The updated price of the item.
+	 */
 	public void updateItem(String Item_id, String Item_name, String Item_category, String Item_size, String Item_price) {
 		String query = "UPDATE item SET Item_name = ?, Item_category = ?, Item_size = ?, Item_price = ? WHERE Item_id = ?";
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
@@ -160,6 +182,11 @@ public class ItemRepository {
 		}
 	}
 	
+	/**
+	 * Deletes an item record from the database.
+	 * 
+	 * @param item_id The ID of the item to delete.
+	 */
 	public void deleteItem(String item_id) {
 		String query = "DELETE FROM item WHERE item_id = ?";
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
@@ -172,6 +199,12 @@ public class ItemRepository {
 		}
 	}
 
+	/**
+	 * Retrieves all items with offers for a seller.
+	 * 
+	 * @param user_id The ID of the seller whose offered items are being retrieved.
+	 * @return An {@code ObservableList<Item>} containing all offered items for the user.
+	 */
 	public ObservableList<Item> getAllOfferItem(String user_id){
 		itemList.clear();
 		String query = "SELECT * FROM item WHERE Item_seller_id = ? AND Item_offer_status LIKE 'offer%'";
@@ -189,6 +222,12 @@ public class ItemRepository {
 		return itemList;
 	}
 	
+	/**
+	 * Updates an item's status to "bought" and clears its offer status.
+	 * 
+	 * @param item_id The ID of the item being updated.
+	 * @param item_price The price at which the item was sold.
+	 */
 	public void updateAcceptOffer(String item_id, String item_price) {
 		String query = "UPDATE item SET Item_status = 'bought', Item_price = ?, Item_status_offer='no_offer' WHERE Item_id = ?";
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
@@ -202,6 +241,12 @@ public class ItemRepository {
 		}
 	}
 	
+	/**
+	 * Updates the status of an item in the database.
+	 * 
+	 * @param item_id The ID of the item to update.
+	 * @param item_status The new status for the item.
+	 */
 	public void updateItemStatus(String item_id, String item_status) {
 		String query = "UPDATE item SET Item_status = ? WHERE Item_id = ?";
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
@@ -215,6 +260,13 @@ public class ItemRepository {
 		}
 	}
 	
+	/**
+	 * Retrieves all items waiting for review.
+	 * 
+	 * This method fetches all items with a status of "waiting," indicating they are pending approval.
+	 * 
+	 * @return An {@code ObservableList<Item>} containing all items awaiting review.
+	 */
 	public ObservableList<Item> getAllRequestItems(){
 		String query = "SELECT * FROM item WHERE Item_status = 'waiting'";
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query);

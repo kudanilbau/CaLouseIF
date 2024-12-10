@@ -1,7 +1,5 @@
 package model;
 
-import java.security.InvalidParameterException;
-
 import repository.UserRepository;
 
 public class User {
@@ -117,7 +115,7 @@ public class User {
 	 * Authenticates a user by checking their username and password.
 	 * <p>
 	 * This method checks if the provided username and password are non-empty. If 
-	 * either is empty, it throws an {@code InvalidParameterException}. If both fields 
+	 * either is empty, it throws an {@code IllegalArgumentException}. If both fields 
 	 * are filled, it attempts to retrieve a {@code User} object from the repository 
 	 * by matching the username and password. If the credentials are valid, the 
 	 * corresponding user is returned. Otherwise, an exception is thrown by the 
@@ -169,7 +167,7 @@ public class User {
 	 * <p>
 	 * This method checks if the provided username, password, phone number, 
 	 * address, and role meet specific validation criteria. If any of the criteria 
-	 * are not met, it throws an {@code InvalidParameterException} with a relevant 
+	 * are not met, it throws an {@code IllegalArgumentException} with a relevant 
 	 * error message indicating the issue.
 	 * </p>
 	 *
@@ -178,23 +176,23 @@ public class User {
 	 * @param Phone_Number the phone number to be validated
 	 * @param Address the address to be validated
 	 * @param Role the role to be validated
-	 * @throws InvalidParameterException if any of the input fields fail to meet validation criteria
+	 * @throws IllegalArgumentException if any of the input fields fail to meet validation criteria
 	 */
 	public static void CheckAccountValidation(String Username, String Password, String Phone_Number, String Address, String Role) {
 		if (!isValidUsername(Username))
-			throw new InvalidParameterException("Username must be more than 3 characters");
+			throw new IllegalArgumentException("Username must be more than 3 characters");
 
 		if (!isValidPassword(Password))
-			throw new InvalidParameterException(
+			throw new IllegalArgumentException(
 					"Password must be more than 8 characters and include special characters (!, @, #, $, %, ^, &, *)");
 
 		if (!isValidPhoneNumber(Phone_Number))
-			throw new InvalidParameterException("Phone number must contain +62 and 10 numbers long");
+			throw new IllegalArgumentException("Phone number must contain +62 and 10 numbers long");
 
 		if (!isValidAddress(Address))
-			throw new InvalidParameterException("Address must be filled");
+			throw new IllegalArgumentException("Address must be filled");
 
 		if (!isValidRole(Role))
-			throw new InvalidParameterException("Role must be selected");
+			throw new IllegalArgumentException("Role must be selected");
 	}
 }
