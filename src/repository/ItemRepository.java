@@ -10,11 +10,16 @@ import model.Item;
 
 public class ItemRepository {
 	private DatabaseConnector db;
-//	to make table updateable
+//	to make table able to be updated
 	private static ObservableList<Item> itemList;
 
 	public ItemRepository() {
 		db = DatabaseConnector.getInstance();
+	}
+	
+	private Item createItemFromResultSet(ResultSet rs) throws SQLException{
+		return new Item(rs.getString("Item_id"), rs.getString("Item_seller_id"), rs.getString("Item_name"), rs.getString("Item_size"), rs.getString("Item_price"), rs.getString("Item_category"),
+							rs.getString("Item_status"), rs.getString("Item_wishlist"), rs.getString("Item_offer_status"));
 	}
 
     /**
@@ -31,8 +36,8 @@ public class ItemRepository {
 		try (PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			try(ResultSet rs = pstmt.executeQuery()){				
 				while (rs.next()) {
-					Item item = new Item(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+//					(Item_id, Item_seller_id, Item_name, Item_size, Item_price, Item_category, Item_status, Item_wishlist, Item_offer_status)
+					Item item = createItemFromResultSet(rs);
 					itemList.add(item);
 				}
 			}
@@ -55,8 +60,7 @@ public class ItemRepository {
 			pstmt.setString(1, item_id);
 			try(ResultSet rs = pstmt.executeQuery()){
 				if(rs.next()) {
-					item = new Item(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));				
+					item = createItemFromResultSet(rs);				
 				}
 			}
 			
@@ -78,8 +82,7 @@ public class ItemRepository {
 		try (PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			pstmt.setString(1, item_name);
 			try(ResultSet rs = pstmt.executeQuery()){
-				item = new Item(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));				
+				item = createItemFromResultSet(rs);			
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

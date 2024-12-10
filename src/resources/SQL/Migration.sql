@@ -1,4 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `calouseif`;
+DROP DATABASE IF EXISTS `calouseif`;
+CREATE DATABASE `calouseif`;
 USE `calouseif`;
 
 DROP TABLE IF EXISTS `user`;
@@ -15,6 +16,7 @@ CREATE TABLE `user` (
 DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `Item_id` varchar(255) NOT NULL,
+  `Item_seller_id` varchar(255) NOT NULL,
   `Item_name` varchar(255) NOT NULL,
   `Item_size` varchar(255) NOT NULL,
   `Item_price` varchar(255) NOT NULL,
@@ -22,7 +24,9 @@ CREATE TABLE `item` (
   `Item_status` varchar(255) NOT NULL,
   `Item_wishlist` varchar(255) NOT NULL,
   `Item_offer_status` varchar(255) NOT NULL,
-  PRIMARY KEY (`item_id`)
+  PRIMARY KEY (`item_id`),
+  KEY `FK_item_user_idx` (`Item_seller_id`),
+  CONSTRAINT `FK_item_user`FOREIGN KEY (`Item_seller_id`) REFERENCES `user` (`User_id`)
 );
 
 DROP TABLE IF EXISTS `transaction`;

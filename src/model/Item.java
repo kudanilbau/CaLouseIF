@@ -6,6 +6,7 @@ import session.UserSession;
 
 public class Item {
 	private String Item_id;
+	private String Item_seller_id;
 	private String Item_name;
 	private String Item_size;
 	private String Item_price;
@@ -14,10 +15,11 @@ public class Item {
 	private String Item_wishlist;
 	private String Item_offer_status;
 
-	public Item(String item_id, String item_name, String item_size, String item_price, String item_category,
+	public Item(String item_id, String item_seller_id, String item_name, String item_size, String item_price, String item_category,
 			String item_status, String item_wishlist, String item_offer_status) {
 		super();
 		Item_id = item_id;
+		Item_seller_id = item_seller_id;
 		Item_name = item_name;
 		Item_size = item_size;
 		Item_price = item_price;
@@ -33,6 +35,14 @@ public class Item {
 
 	public void setItem_id(String item_id) {
 		Item_id = item_id;
+	}
+
+	public String getItem_seller_id() {
+		return Item_seller_id;
+	}
+
+	public void setItem_seller_id(String item_seller_id) {
+		Item_seller_id = item_seller_id;
 	}
 
 	public String getItem_name() {
