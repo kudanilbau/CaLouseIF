@@ -15,7 +15,7 @@ public class WishlistController {
      * @return an {@code ObservableList<Item>} containing all user's wishlist
      */
 	public ObservableList<Wishlist> ViewWishlist(String User_id) {
-		Wishlist.ViewWishlist(User_id);
+		return Wishlist.ViewWishlist(User_id);
 	}
 	
     /**
