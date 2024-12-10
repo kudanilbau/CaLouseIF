@@ -136,6 +136,7 @@ public class ItemRepository {
 			pstmt.setString(7, item.getItem_status());
 			pstmt.setString(8, item.getItem_wishlist());
 			pstmt.setString(9, item.getItem_offer_status());
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
