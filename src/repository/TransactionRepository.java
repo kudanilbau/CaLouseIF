@@ -24,7 +24,17 @@ public class TransactionRepository {
 		return new Transaction(rs.getString("User_id"), rs.getString("Item_id"), rs.getString("transaction_id"));
 	}
 	
-	public Transaction createPurchaseOrder(String user_id, String item_id) {
+	/**
+	 * Creates a new purchase order in the transaction database.
+	 * 
+	 * This method inserts a new transaction record into the database with the given user ID and item ID.
+	 * A unique transaction ID is generated using {@code UUID.randomUUID()}.
+	 * 
+	 * @param user_id The ID of the user making the purchase.
+	 * @param item_id The ID of the item being purchased.
+	 * @return A {@code Transaction} object representing the newly created transaction, or {@code null} if an error occurs.
+	 */
+	public Transaction createTransaction(String user_id, String item_id) {
 		String query = "INSERT INTO transaction(User_id, Item_id, transaction_id) VALUES(?, ? ,?)";
 		Transaction transaction = new Transaction(user_id, item_id, UUID.randomUUID().toString());
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
@@ -39,6 +49,12 @@ public class TransactionRepository {
 		return transaction;
 	}
 	
+	/**
+	 * Retrieves the transaction history for a specific user.
+	 * 
+	 * @param user_id The ID of the user whose transaction history is being requested.
+	 * @return An {@code ObservableList<Transaction>} containing the user's transaction history.
+	 */
 	public ObservableList<Transaction> getTransactionHistory(String user_id){
 		String query = "SELECT * FROM transaction WHERE User_id = ?";
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
@@ -54,6 +70,12 @@ public class TransactionRepository {
 		return transactionList;
 	}
 
+	/**
+	 * Retrieves a transaction by its ID.
+	 * 
+	 * @param transaction_id The ID of the transaction to retrieve.
+	 * @return A {@code Transaction} object representing the requested transaction, or {@code null} if no matching transaction is found.
+	 */
 	public Transaction getTransactionById(String transaction_id) {
 		String query = "SELECT * FROM transaction WHERE transaction_id = ?";
 		Transaction transaction = null;
