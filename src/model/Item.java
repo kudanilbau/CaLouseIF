@@ -2,6 +2,7 @@ package model;
 
 import javafx.collections.ObservableList;
 import repository.ItemRepository;
+import repository.TransactionRepository;
 import session.UserSession;
 
 public class Item {
@@ -168,8 +169,24 @@ public class Item {
 		itemRepository.updateOfferItem(Item_id, offer);
 	}
 
-	public void AcceptOffer(String Item_id) {
-		throw new UnsupportedOperationException();
+	public void AcceptOffer(String Item_id, String item_status_offer) {
+		ItemRepository itemRepository = new ItemRepository();
+		TransactionRepository transactionRepository = new TransactionRepository();
+		String[] itemStatus = item_status_offer.split(",");
+//		return if there's isn't an offer
+		if(!itemStatus[0].equals("offer")) {
+			return;
+		}
+		String offerPrice = itemStatus[1];
+		String buyerId = itemStatus[2];
+		
+		itemRepository.updateAcceptOffer(Item_id, offerPrice);
+		
+		transactionRepository.createPurchaseOrder(buyerId, Item_id);
+		
+//		Get current user (should be the current seller)
+		itemRepository.getAllSellerItem(UserSession.getInstance().getUser().getUser_id());
+		
 	}
 
 	public void DeclineOffer(String Item_id) {
@@ -187,8 +204,10 @@ public class Item {
 	public void VIewAcceptedItem(String Item_id) {
 		throw new UnsupportedOperationException();
 	}
-
-	public void ViewOfferItem(String User_id) {
-		throw new UnsupportedOperationException();
+	
+	
+	public static ObservableList<Item> ViewOfferItem(String User_id) {
+		ItemRepository itemRepository = new ItemRepository();
+		return itemRepository.getAllSellerItem(User_id);
 	}
 }
