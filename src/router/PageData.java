@@ -1,5 +1,6 @@
 package router;
 
+import controller.AdminDashboardController;
 import controller.BuyerHomepageController;
 import controller.BuyerItemDetailsController;
 import controller.ItemController;
@@ -73,7 +74,7 @@ public class PageData {
 	 * @return the {@code Node} representing the admin dashboard page
 	 */
 	public static Node adminDashboardPage() {
-		return new AdminDashboardView();
+		return new AdminDashboardView(new AdminDashboardController(new ItemController()));
 	}
 
 	/**

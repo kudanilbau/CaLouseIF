@@ -84,7 +84,7 @@ public class ItemController {
 	 * @param item_status the status of the item
 	 * @return an {@code ObservableList<Item>} containing requested items
 	 */
-	public ObservableList<Item> ViewRequestedItem(String Item_id, String item_status) {
+	public ObservableList<Item> ViewRequestedItem() {
 		return Item.ViewRequestedItem();
 	}
 
@@ -143,8 +143,12 @@ public class ItemController {
 	 *
 	 * @param Item_id the ID of the item to decline
 	 * @param reason  the reason for declining the item
+	 * @throws IllegalArgumentException if the reason is empty
 	 */
-	public void DeclineItem(String Item_id, String reason) {
+	public void DeclineItem(String Item_id, String reason) throws IllegalArgumentException{
+		if(reason.isBlank()) {
+			throw new IllegalArgumentException("Reason cannot be empty");
+		}
 		Item.DeclineItem(Item_id, reason);
 	}
 

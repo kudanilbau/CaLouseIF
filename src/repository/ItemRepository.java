@@ -269,6 +269,7 @@ public class ItemRepository {
 	 */
 	public ObservableList<Item> getAllRequestItems(){
 		String query = "SELECT * FROM item WHERE Item_status = 'waiting'";
+		itemList.clear();
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query);
 				ResultSet rs = pstmt.executeQuery();) {
 			while(rs.next()) {
