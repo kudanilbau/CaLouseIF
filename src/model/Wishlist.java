@@ -39,7 +39,7 @@ public class Wishlist {
 		User_id = user_id;
 	}
 
-	public static ObservableList<Wishlist> ViewWishlist(String User_id) {
+	public static ObservableList<Item> ViewWishlist(String User_id) {
 		WishlistRepository wishlistRepository = new WishlistRepository();
 		return wishlistRepository.getWishlistByUserId(User_id);
 	}
@@ -63,6 +63,11 @@ public class Wishlist {
 	public static void RemoveWishlist(String Wishlist_id) {
 		WishlistRepository wishlistRepository = new WishlistRepository();
 		wishlistRepository.removeWishlistById(Wishlist_id);
+	}
+	
+	public static Wishlist ViewWishlist(String User_id, String Item_id) {
+		WishlistRepository wishlistRepository = new WishlistRepository();
+		return wishlistRepository.getWishlistByUserIdAndItemId(User_id, Item_id);
 	}
 
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.collections.ObservableList;
+import model.Item;
 import model.Wishlist;
 
 public class WishlistController {
@@ -14,7 +15,7 @@ public class WishlistController {
      * 
      * @return an {@code ObservableList<Item>} containing all user's wishlist
      */
-	public ObservableList<Wishlist> ViewWishlist(String User_id) {
+	public ObservableList<Item> ViewWishlist(String User_id) {
 		return Wishlist.ViewWishlist(User_id);
 	}
 	

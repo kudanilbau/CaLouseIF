@@ -41,7 +41,7 @@ public class PasswordEncrypt {
 //		String password = "admin";
 //		System.out.println(UUID.randomUUID());
 //		System.out.println(encrypt(password));
-		int MAX_ITERATION = 50;
+		int MAX_ITERATION = 3;
 		for(int i = 0; i < MAX_ITERATION; i++) {
 			System.out.println(UUID.randomUUID());
 		}

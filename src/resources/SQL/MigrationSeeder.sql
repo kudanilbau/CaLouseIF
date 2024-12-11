@@ -37,8 +37,8 @@ CREATE TABLE `transaction` (
   PRIMARY KEY (`transaction_id`),
   KEY `FK_transaction_user_idx` (`user_id`),
   KEY `FK_transaction_item_idx` (`item_id`),
-  CONSTRAINT `FK_transaction_item` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`),
-  CONSTRAINT `FK_transaction_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+  CONSTRAINT `FK_transaction_item` FOREIGN KEY (`Item_id`) REFERENCES `item` (`Item_id`),
+  CONSTRAINT `FK_transaction_user` FOREIGN KEY (`User_id`) REFERENCES `user` (`User_id`)
 );
 
 DROP TABLE IF EXISTS `wishlist`;
@@ -47,10 +47,10 @@ CREATE TABLE `wishlist` (
   `Item_id` varchar(255) NOT NULL,
   `User_id` varchar(255) NOT NULL,
   PRIMARY KEY (`wishlist_id`),
-  KEY `FK_wishlist_user_idx` (`user_id`),
-  KEY `FK_wishlist_item_idx` (`item_id`),
-  CONSTRAINT `FK_wishlist_item` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_wishlist_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `FK_wishlist_user_idx` (`User_id`),
+  KEY `FK_wishlist_item_idx` (`Item_id`),
+  CONSTRAINT `FK_wishlist_item` FOREIGN KEY (`Item_id`) REFERENCES `item` (`Item_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_wishlist_user` FOREIGN KEY (`User_id`) REFERENCES `user` (`User_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 USE calouseif;
@@ -118,3 +118,9 @@ VALUES
 ('55923e3a-5781-42a4-858c-309605badaf3', '2225cbc2-d679-4a08-8306-891f0711937c', '6c317993-e100-446c-8e6f-383ef68d1f54'),
 ('55923e3a-5781-42a4-858c-309605badaf3', 'bef59b49-bb95-458f-958e-b8a9fb7d569b', '98296f43-58cc-4977-84f7-5196e3d1a900'),
 ('55923e3a-5781-42a4-858c-309605badaf3', 'd662587b-c33c-40e3-b384-f520de8f50fa', '12113913-dec5-4391-94d7-7b8753e39d6b');
+
+INSERT INTO wishlist(Wishlist_id, Item_id, User_id)
+VALUES
+('ce3016c6-c718-4e5b-9171-36ccc3bfa939', '67a3b3b9-e8f6-4f9c-959f-89923d3b9501', '55923e3a-5781-42a4-858c-309605badaf3'),
+('238a30aa-1921-4700-880a-5af7eb46f489', '9e0099e7-8b0f-43a1-9b9d-42b386b29d20', '55923e3a-5781-42a4-858c-309605badaf3'),
+('4b354b9a-000d-48a9-8d9b-8e62e03c4874', '043847a8-8816-4379-af44-8a68dae8a802', '55923e3a-5781-42a4-858c-309605badaf3');

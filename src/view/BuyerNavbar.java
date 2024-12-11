@@ -37,13 +37,12 @@ public class BuyerNavbar extends HBox {
 	private void setActionComponent() {
 		wishlistButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				router.navigateTo(PageData.buyerHomePage());
+				router.navigateTo(PageData.buyerWishlistPage());
 			}
 		});
 
 		purchaseHistoryButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-//				router.navigateTo(PageData.buyerHomePage());
 				router.navigateTo(PageData.loginPage());
 			}
 		});
