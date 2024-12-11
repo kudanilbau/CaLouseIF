@@ -2,6 +2,8 @@ package controller;
 
 import javafx.collections.ObservableList;
 import model.Item;
+import model.User;
+import session.UserSession;
 
 public class ItemController {
 	/**
@@ -22,16 +24,17 @@ public class ItemController {
 	/**
 	 * Updates the details of an existing item after validation.
 	 *
+	 * @param Item_id		the ID of the item to be updated.
 	 * @param Item_name     the updated name of the item
 	 * @param Item_category the updated category of the item
 	 * @param Item_size     the updated size of the item
 	 * @param Item_price    the updated price of the item
 	 * @throws IllegalArgumentException if any validation fails
 	 */
-	public void EditItem(String Item_name, String Item_category, String Item_size, String Item_price)
+	public void EditItem(String Item_id, String Item_name, String Item_category, String Item_size, String Item_price)
 			throws IllegalArgumentException {
 		CheckItemValidation(Item_name, Item_category, Item_size, Item_price);
-		Item.EditItem(Item_price, Item_name, Item_category, Item_size, Item_price);
+		Item.EditItem(Item_id, Item_name, Item_category, Item_size, Item_price);;
 	}
 
 	/**

@@ -6,7 +6,8 @@ import session.UserSession;
 
 public class Item {
 	private String Item_id;
-	private String Item_seller_id;
+	private String Item_seller_id; // menambahkan field Item_seller_id untuk mengetahui siapa yang menjual barang
+									// untuk mengecek authorization saat edit barang
 	private String Item_name;
 	private String Item_size;
 	private String Item_price;
