@@ -1,6 +1,6 @@
 package model;
 
-import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import repository.TransactionRepository;
 
 public class Transaction {
@@ -55,9 +55,9 @@ public class Transaction {
 	 * Retrieves the transaction history for a specific user.
 	 * 
 	 * @param user_id The ID of the user whose transaction history is being requested.
-	 * @return An {@code ObservableList<Transaction>} containing the user's transaction history.
+	 * @return An {@code ObservableList<Transaction, Item>} containing the user's transaction history.
 	 */
-	public static ObservableList<Transaction> ViewHistory(String user_id) {
+	public static ObservableMap<Transaction, Item> ViewHistory(String user_id) {
 		TransactionRepository transactionRepository = new TransactionRepository();
 		return transactionRepository.getTransactionHistory(user_id);
 	}

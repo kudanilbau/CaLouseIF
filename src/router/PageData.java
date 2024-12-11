@@ -3,6 +3,7 @@ package router;
 import controller.AdminDashboardController;
 import controller.BuyerHomepageController;
 import controller.BuyerItemDetailsController;
+import controller.BuyerPurchaseHistoryController;
 import controller.BuyerWishlistController;
 import controller.ItemController;
 import controller.LoginController;
@@ -16,6 +17,7 @@ import view.AdminDashboardView;
 import view.BuyerHomepageView;
 import view.BuyerItemDetailsView;
 import view.BuyerNavbar;
+import view.BuyerPurchaseHistoryView;
 import view.BuyerWishlistView;
 import view.LoginView;
 import view.RegisterView;
@@ -108,5 +110,9 @@ public class PageData {
 	
 	public static Node buyerWishlistPage() {
 		return new BuyerWishlistView(new BuyerWishlistController());
+	}
+	
+	public static Node buyerPurchaseHistoryPage() {
+		return new BuyerPurchaseHistoryView(new BuyerPurchaseHistoryController());
 	}
 }

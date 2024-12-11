@@ -1,6 +1,7 @@
 package controller;
 
-import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
+import model.Item;
 import model.Transaction;
 
 public class TransactionController {
@@ -16,15 +17,8 @@ public class TransactionController {
 		return Transaction.PurchaseItems(User_id, Item_id);
 	}
 
-	/**
-	 * Retrieves the transaction history for a specific user.
-	 *
-	 * @param user_id the ID of the user whose transaction history is being
-	 *                retrieved
-	 * @return an {@code ObservableList<Transaction>} containing the user's
-	 *         transaction history
-	 */
-	public static ObservableList<Transaction> ViewHistory(String user_id) {
+	
+	public static ObservableMap<Transaction, Item> ViewHistory(String user_id) {
 		return Transaction.ViewHistory(user_id);
 	}
 

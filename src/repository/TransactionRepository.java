@@ -6,17 +6,18 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
+import model.Item;
 import model.Transaction;
 
 public class TransactionRepository {
 	private DatabaseConnector db;
-	private static ObservableList<Transaction> transactionList;
+	private static ObservableMap<Transaction, Item> transactionList;
 	
 	public TransactionRepository() {
 		db = DatabaseConnector.getInstance();
 		if(transactionList == null) {
-			transactionList = FXCollections.observableArrayList();
+			transactionList = FXCollections.observableHashMap();
 		}
 	}
 	
@@ -49,19 +50,17 @@ public class TransactionRepository {
 		return transaction;
 	}
 	
-	/**
-	 * Retrieves the transaction history for a specific user.
-	 * 
-	 * @param user_id The ID of the user whose transaction history is being requested.
-	 * @return An {@code ObservableList<Transaction>} containing the user's transaction history.
-	 */
-	public ObservableList<Transaction> getTransactionHistory(String user_id){
+	
+	public ObservableMap<Transaction, Item> getTransactionHistory(String user_id){
 		String query = "SELECT * FROM transaction WHERE User_id = ?";
+		ItemRepository itemRepository = new ItemRepository();
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			pstmt.setString(1, user_id);
 			try(ResultSet rs = pstmt.executeQuery()){
 				while(rs.next()) {
-					transactionList.add(createTransactionFromResultSet(rs));
+					Transaction transaction = createTransactionFromResultSet(rs);
+					Item item = itemRepository.getItemById(transaction.getItem_id());
+					transactionList.put(transaction, item);
 				}
 			}
 		} catch (SQLException e) {

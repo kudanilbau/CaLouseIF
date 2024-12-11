@@ -43,7 +43,7 @@ public class BuyerNavbar extends HBox {
 
 		purchaseHistoryButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				router.navigateTo(PageData.loginPage());
+				router.navigateTo(PageData.buyerPurchaseHistoryPage());
 			}
 		});
 
