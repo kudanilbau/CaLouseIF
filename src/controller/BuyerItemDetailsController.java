@@ -1,19 +1,33 @@
 package controller;
 
 import model.Item;
+import model.User;
+import model.Wishlist;
 import session.UserSession;
 
 public class BuyerItemDetailsController {
 	private ItemController itemController;
 	private WishlistController wishlistController;
+	private TransactionController transactionController;
 	
-	public BuyerItemDetailsController(ItemController itemController, WishlistController wishlistController) {
+	public BuyerItemDetailsController(ItemController itemController, WishlistController wishlistController, TransactionController transactionController) {
 		this.itemController = itemController;
 		this.wishlistController = wishlistController;
+		this.transactionController = transactionController;
 	}
 	
-	public void handlePurchaseButton(Item item) {
-		
+	public void handlePurchaseButton(Item item) throws IllegalArgumentException {
+		User user = UserSession.getInstance().getUser();
+		item = Item.VIewAcceptedItem(item.getItem_id());
+//		if item status is not accepted, then it have already been bought
+		if(item == null) {
+			throw new IllegalArgumentException("Product sold");
+		}
+		transactionController.PurchaseItems(user.getUser_id(), item.getItem_id());
+		Wishlist wishlist = wishlistController.ViewWishlist(user.getUser_id(), item.getItem_id());
+		if(wishlist != null) {
+			Wishlist.RemoveWishlist(wishlist.getWhislist_id());
+		}
 	}
 	
     /**
@@ -35,7 +49,7 @@ public class BuyerItemDetailsController {
      *
      * @param item the {@code Item} to be added to the wishlist
      */
-	public void handleAddToWishlist(Item item) {
+	public void handleAddToWishlist(Item item) throws IllegalArgumentException{
 		wishlistController.AddWishlist(item.getItem_id(), UserSession.getInstance().getUser().getUser_id());
 	}
 }

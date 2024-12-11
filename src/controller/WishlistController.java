@@ -19,6 +19,10 @@ public class WishlistController {
 		return Wishlist.ViewWishlist(User_id);
 	}
 	
+	public Wishlist ViewWishlist(String User_id, String Item_id) {
+		return Wishlist.ViewWishlist(User_id, Item_id);
+	}
+	
     /**
      * Adds an item to the user's wishlist.
      * 
@@ -28,7 +32,11 @@ public class WishlistController {
      * @param item_id The ID of the item to be added to the wishlist.
      * @param User_id The ID of the user adding the item to their wishlist.
      */
-	public void AddWishlist(String item_id, String User_id) {
+	public void AddWishlist(String item_id, String User_id) throws IllegalArgumentException{
+		Wishlist wishlist = Wishlist.ViewWishlist(User_id, item_id);
+		if(wishlist != null) {
+			throw new IllegalArgumentException("Item already in wishlist");
+		}
 		Wishlist.AddWishlist(item_id, User_id);
 	}
 	

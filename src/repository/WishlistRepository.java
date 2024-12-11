@@ -20,7 +20,7 @@ public class WishlistRepository {
 		if (wishlistList == null) {
 			wishlistList = FXCollections.observableArrayList();
 		}
-		if(wishlistItemList == null) {
+		if (wishlistItemList == null) {
 			wishlistItemList = FXCollections.observableArrayList();
 		}
 	}
@@ -61,7 +61,7 @@ public class WishlistRepository {
 					Wishlist wishlist = new Wishlist(rs.getString("Wishlist_id"), rs.getString("Item_id"),
 							rs.getString("User_id"));
 					wishlistList.add(wishlist);
-					
+
 					Item item = itemRepository.getItemById(wishlist.getItem_id());
 					wishlistItemList.add(item);
 				}
@@ -96,21 +96,22 @@ public class WishlistRepository {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Wishlist getWishlistByUserIdAndItemId(String user_id, String item_id) {
 		String query = "SELECT * FROM wishlist WHERE User_id = ? AND Item_id = ?";
-		
-		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)){
+
+		try (PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			pstmt.setString(1, user_id);
 			pstmt.setString(2, item_id);
-			try(ResultSet rs = pstmt.executeQuery()){
-				rs.next();
-				Wishlist wishlist = new Wishlist(rs.getString("Wishlist_id"), item_id, user_id);
-				return wishlist;
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					Wishlist wishlist = new Wishlist(rs.getString("Wishlist_id"), item_id, user_id);
+					return wishlist;
+				}
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
 		}
+		return null;
 	}
 }

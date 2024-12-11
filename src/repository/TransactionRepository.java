@@ -38,11 +38,14 @@ public class TransactionRepository {
 	public Transaction createTransaction(String user_id, String item_id) {
 		String query = "INSERT INTO transaction(User_id, Item_id, transaction_id) VALUES(?, ? ,?)";
 		Transaction transaction = new Transaction(user_id, item_id, UUID.randomUUID().toString());
+		ItemRepository itemRepository = new ItemRepository();
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			pstmt.setString(1, transaction.getUser_id());
 			pstmt.setString(2, transaction.getItem_id());
 			pstmt.setString(3, transaction.getTransaction_id());
 			pstmt.executeUpdate();
+
+			itemRepository.updateItemPurchase(item_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

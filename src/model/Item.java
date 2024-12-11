@@ -269,7 +269,6 @@ public class Item {
 			throw new IllegalArgumentException("Offer must be more than previous offer");
 		}
 		String currentUserId = UserSession.getInstance().getUser().getUser_id();
-		System.out.println(currentUserId);
 		String offer = String.format("offer,%s,%s", item_price, currentUserId);
 		itemRepository.updateOfferItem(Item_id, offer);
 	}
@@ -350,18 +349,18 @@ public class Item {
 	/**
 	 * Retrieves an accepted item by its ID.
 	 * 
-	 * This method fetches an item if its status starts with "accepted". Otherwise,
+	 * This method fetches an item if its status starts with "approved". Otherwise,
 	 * it returns {@code null}.
 	 * 
 	 * @param Item_id The ID of the item to retrieve.
-	 * @return The {@code Item} object if the status is "accepted"; otherwise,
+	 * @return The {@code Item} object if the status is "approved"; otherwise,
 	 *         {@code null}.
 	 */
 	public static Item VIewAcceptedItem(String Item_id) {
 		ItemRepository itemRepository = new ItemRepository();
 		Item item = itemRepository.getItemById(Item_id);
 		String itemStatus = item.getItem_status();
-		if (!itemStatus.startsWith("accepted")) {
+		if (!itemStatus.startsWith("approved")) {
 			return null;
 		}
 		return item;

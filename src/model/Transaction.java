@@ -1,6 +1,7 @@
 package model;
 
 import javafx.collections.ObservableMap;
+import repository.ItemRepository;
 import repository.TransactionRepository;
 
 public class Transaction {
@@ -48,6 +49,12 @@ public class Transaction {
 	 */
 	public static Transaction PurchaseItems(String User_id, String Item_id) {
 		TransactionRepository transactionRepository = new TransactionRepository();
+		ItemRepository itemRepository = new ItemRepository();
+		Item item = itemRepository.getItemById(Item_id);
+		String[] itemStatus = item.getItem_status().split(",");
+		if(itemStatus[0].equals("bought")) {
+			return null;
+		}
 		return transactionRepository.createTransaction(User_id, Item_id);
 	}
 

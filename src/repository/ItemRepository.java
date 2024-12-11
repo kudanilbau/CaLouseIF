@@ -229,7 +229,7 @@ public class ItemRepository {
 	 * @param item_price The price at which the item was sold.
 	 */
 	public void updateAcceptOffer(String item_id, String item_price) {
-		String query = "UPDATE item SET Item_status = 'bought', Item_price = ?, Item_status_offer='no_offer' WHERE Item_id = ?";
+		String query = "UPDATE item SET Item_status = 'bought', Item_price = ?, Item_offer_status='no_offer' WHERE Item_id = ?";
 		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
 			pstmt.setString(1, item_price);
 			pstmt.setString(2, item_id);
@@ -279,5 +279,17 @@ public class ItemRepository {
 			e.printStackTrace();
 		}
 		return itemList;
+	}
+	
+	public void updateItemPurchase(String item_id) {
+		String query = "UPDATE item SET Item_status = 'bought', Item_offer_status='no_offer' WHERE Item_id = ?";
+		try(PreparedStatement pstmt = db.getConnection().prepareStatement(query)) {
+			pstmt.setString(1, item_id);
+			pstmt.executeUpdate();
+			
+			updateItemList(item_id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

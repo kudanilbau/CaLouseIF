@@ -8,19 +8,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.Item;
 
 public class BuyerItemDetailsView extends VBox {
 	private Item item;
-	private GridPane itemDetailGridPane;
-	private HBox offerInputHBox;
+	private GridPane itemDetailGridPane, actionGridPane;
 	private TextField offerInputTextField;
 	private Label nameLabel, categoryLabel, sizeLabel, priceLabel, offerLabel;
 	private Label nameDetailLabel, categoryDetailLabel, sizeDetailLabel, priceDetailLabel, offerDetailLabel;
-	private Label messageLabel;
+	private Label offerMessageLabel, purchaseMessageLabel, addToWishlistMessageLabel;
 	private Button addToWishlistButton, purchaseButton, offerButton;
 
 	private BuyerItemDetailsController buyerItemDetailsController;
@@ -36,17 +34,19 @@ public class BuyerItemDetailsView extends VBox {
 	}
 
 	private void initComponents() {
-		offerInputHBox = new HBox(10);
-
 		itemDetailGridPane = new GridPane();
+		actionGridPane = new GridPane();
 
 		nameLabel = new Label("Item Name: ");
 		categoryLabel = new Label("Category: ");
 		sizeLabel = new Label("Size: ");
 		priceLabel = new Label("Price: ");
 		offerLabel = new Label("Current Offer: ");
-		messageLabel = new Label();
 
+		offerMessageLabel = new Label();
+		purchaseMessageLabel = new Label();
+		addToWishlistMessageLabel = new Label();
+		
 		nameDetailLabel = new Label(item.getItem_name());
 		categoryDetailLabel = new Label(item.getItem_category());
 		sizeDetailLabel = new Label(item.getItem_size());
@@ -72,10 +72,16 @@ public class BuyerItemDetailsView extends VBox {
 		itemDetailGridPane.add(sizeDetailLabel, 1, 2);
 		itemDetailGridPane.add(priceDetailLabel, 1, 3);
 		itemDetailGridPane.add(offerDetailLabel, 1, 4);
+		
+		actionGridPane.add(addToWishlistButton, 0, 0);
+		actionGridPane.add(purchaseButton, 0, 1);
+		actionGridPane.add(offerButton, 0, 2);
+		actionGridPane.add(addToWishlistMessageLabel, 1, 0);
+		actionGridPane.add(purchaseMessageLabel, 1, 1);
+		actionGridPane.add(offerInputTextField, 1, 2);
+		actionGridPane.add(offerMessageLabel, 2, 2);
 
-		offerInputHBox.getChildren().addAll(offerButton, offerInputTextField, messageLabel);
-
-		this.getChildren().addAll(itemDetailGridPane, addToWishlistButton, purchaseButton, offerInputHBox);
+		this.getChildren().addAll(itemDetailGridPane, actionGridPane);
 	}
 
 	private void styleComponents() {
@@ -85,14 +91,24 @@ public class BuyerItemDetailsView extends VBox {
 
 		itemDetailGridPane.setHgap(10);
 		itemDetailGridPane.setVgap(10);
-
+		
+		actionGridPane.setHgap(10);
+		actionGridPane.setVgap(10);
+		
 		offerInputTextField.setPromptText("offer price");
 	}
 
 	private void setActionNode() {
 		purchaseButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				buyerItemDetailsController.handlePurchaseButton(item);
+				try {
+					buyerItemDetailsController.handlePurchaseButton(item);					
+					purchaseMessageLabel.setTextFill(Color.GREEN);
+					purchaseMessageLabel.setText("Purchase successfull");
+				} catch (IllegalArgumentException ex) {
+					purchaseMessageLabel.setTextFill(Color.RED);
+					purchaseMessageLabel.setText(ex.getMessage());
+				}
 			}
 		});
 
@@ -101,19 +117,26 @@ public class BuyerItemDetailsView extends VBox {
 				try {
 					String offerInput = offerInputTextField.getText();
 					buyerItemDetailsController.handleOfferButton(item, offerInput);
-					messageLabel.setTextFill(Color.GREEN);
+					offerMessageLabel.setTextFill(Color.GREEN);
 					offerDetailLabel.setText(offerInput);
-					messageLabel.setText("Success");
+					offerMessageLabel.setText("Success");
 				} catch (IllegalArgumentException ex) {
-					messageLabel.setTextFill(Color.RED);
-					messageLabel.setText(ex.getMessage());
+					offerMessageLabel.setTextFill(Color.RED);
+					offerMessageLabel.setText(ex.getMessage());
 				}
 			}
 		});
 
 		addToWishlistButton.setOnMouseClicked(e -> {
 			if (e.getButton() == MouseButton.PRIMARY) {
-				buyerItemDetailsController.handleAddToWishlist(item);
+				try {
+					buyerItemDetailsController.handleAddToWishlist(item);
+					addToWishlistMessageLabel.setTextFill(Color.GREEN);
+					addToWishlistMessageLabel.setText("Added to wishlist");
+				}catch(IllegalArgumentException ex) {
+					addToWishlistMessageLabel.setTextFill(Color.RED);
+					addToWishlistMessageLabel.setText(ex.getMessage());
+				}
 			}
 		});
 	}
